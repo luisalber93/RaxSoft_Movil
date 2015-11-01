@@ -16,6 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".gui.MateriasPrimas"
+            android:label="@string/title_activity_materias_primas" >
+        </activity>
+        <activity
+            android:name=".gui.InformacionProducto"
+            android:label="@string/title_activity_informacion_producto" >
+        </activity>
+        <activity
+            android:name=".gui.RegistrarMateriaPrima"
+            android:label="@string/title_activity_registrar_materia_prima" >
+        </activity>
     </application>
 
 </manifest>

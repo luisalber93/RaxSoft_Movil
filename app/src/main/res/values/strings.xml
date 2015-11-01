@@ -3,4 +3,23 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+<!--String TextView-->
+    <string name="strUsuario">Usuario</string>
+    <string name="strContraseña">Contraseña</string>
+    <string name="strCodigoProducto">Código Producto</string>
+    <string name="strNombreProudcto">Nombre del Producto</string>
+    <string name="strDescripcionProducto">Descripción del Producto</string>
+    <string name="strCostoProducto">Costo del Producto</string>
+
+    <!-- String Spinner-->
+    <string name="strSpinnerProveedores">Proveedores</string>
+
+    <!-- String Botones-->
+    <string name="strBtnIngresar">Ingresar</string>
+    <string name="strBtnRegistrar">Registrar</string>
+
+    <!--String Activities-->
+    <string name="title_activity_materias_primas">Materias Primas</string>
+    <string name="title_activity_informacion_producto">Información Producto</string>
+    <string name="title_activity_registrar_materia_prima">Registrar Materia Prima</string>
 </resources>
