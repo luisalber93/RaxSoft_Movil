@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.maven.raxsoft.gui.RegistrarMateriaPrima">
+    tools:context="com.maven.raxsoft.gui.EditarMateriaPrima">
 
     <LinearLayout
         android:orientation="vertical"
@@ -22,7 +22,7 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strCodigoProducto"
                 android:ems="10"
-                android:id="@+id/idEdTeCodigoProducto" />
+                android:id="@+id/idEdTeEditarCodigoProducto" />
         </LinearLayout>
 
         <LinearLayout
@@ -36,7 +36,7 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strNombreProudcto"
                 android:ems="10"
-                android:id="@+id/idEdTeNombreProducto" />
+                android:id="@+id/idEdTeEditarNombreProducto" />
         </LinearLayout>
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strDescripcionProducto"
                 android:ems="10"
-                android:id="@+id/idEdTeDescripcionProducto" />
+                android:id="@+id/idEdTeEditarDescripcionProducto" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +64,7 @@
                 android:inputType="numberDecimal"
                 android:hint="@string/strCostoProducto"
                 android:ems="10"
-                android:id="@+id/idEdTeCostoProducto" />
+                android:id="@+id/idEdTeEditarCostoProducto" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,7 +75,7 @@
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/idSpProveedor" />
+                android:id="@+id/idSpEditarProveedor" />
         </LinearLayout>
 
         <LinearLayout
@@ -86,8 +86,9 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/strBtnRegistrar"
-                android:id="@+id/idBtnRegistrarProducto" />
+                android:hint="@string/strBtnActualizar"
+                android:id="@+id/idBtnActualizarProducto" />
         </LinearLayout>
     </LinearLayout>
+
 </RelativeLayout>

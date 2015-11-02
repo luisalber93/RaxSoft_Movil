@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.maven.raxsoft.gui.RegistrarMateriaPrima">
+    tools:context="com.maven.raxsoft.gui.EditarProveedor">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,81 +13,116 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/strCodigoProducto"
+                android:hint="@string/strRazonSocial"
                 android:ems="10"
-                android:id="@+id/idEdTeCodigoProducto" />
+                android:id="@+id/idEdTeEditarRazonSocial" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/strNombreProudcto"
+                android:hint="@string/strCalle"
                 android:ems="10"
-                android:id="@+id/idEdTeNombreProducto" />
+                android:id="@+id/idEdTeEditarCalle" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/strColonia"
+                android:ems="10"
+                android:id="@+id/idEdTeEditarColonia" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/strDescripcionProducto"
+                android:hint="@string/strEstado"
                 android:ems="10"
-                android:id="@+id/idEdTeDescripcionProducto" />
+                android:id="@+id/idEdTeEditarEstado" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/strMunicipio"
+                android:ems="10"
+                android:id="@+id/idEdTeEditarMunicipio" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="@string/strCostoProducto"
+                android:inputType="phone"
+                android:hint="@string/strTelefono"
                 android:ems="10"
-                android:id="@+id/idEdTeCostoProducto" />
+                android:id="@+id/idEdEditarTeTelofono" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Spinner
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/idSpProveedor" />
+                android:inputType="textEmailAddress"
+                android:hint="@string/strCorreoElectronico"
+                android:ems="10"
+                android:id="@+id/idEdTeEditarCorreoElectronico" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:hint="@string/strGiro"
+                android:ems="10"
+                android:id="@+id/idEdTeEditarGiro" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/strBtnRegistrar"
-                android:id="@+id/idBtnRegistrarProducto" />
+                android:text="@string/strBtnRegistrar"
+                android:id="@+id/idBtnEditarRegistrarProveedor" />
         </LinearLayout>
+
     </LinearLayout>
+
 </RelativeLayout>

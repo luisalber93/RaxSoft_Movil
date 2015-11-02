@@ -9,6 +9,14 @@
     <string name="strNombreProudcto">Nombre del Producto</string>
     <string name="strDescripcionProducto">Descripción del Producto</string>
     <string name="strCostoProducto">Costo del Producto</string>
+    <string name="strRazonSocial">Razon Social</string>
+    <string name="strCalle">Calle</string>
+    <string name="strEstado">Estado</string>
+    <string name="strColonia">Colonia</string>
+    <string name="strMunicipio">Municipio</string>
+    <string name="strTelefono">Telefono</string>
+    <string name="strCorreoElectronico">Correo Electrónico</string>
+    <string name="strGiro">Giro</string>
 
     <!-- String Spinner-->
     <string name="strSpinnerProveedores">Proveedores</string>
@@ -16,6 +24,7 @@
     <!-- String Botones-->
     <string name="strBtnIngresar">Ingresar</string>
     <string name="strBtnRegistrar">Registrar</string>
+    <string name="strBtnActualizar">Actualizar</string>
 
     <!--String Menus-->
     <string name="hello_world">Hello world!</string>
@@ -33,4 +42,9 @@
     <string name="title_activity_materias_primas">Materias Primas</string>
     <string name="title_activity_informacion_producto">Información Producto</string>
     <string name="title_activity_registrar_materia_prima">Registrar Materia Prima</string>
+    <string name="title_activity_registrar_proveedor">RegistrarProveedor</string>
+    <string name="title_activity_proveedores">Proveedores</string>
+    <string name="title_activity_informacion_proveedor">InformacionProveedor</string>
+    <string name="title_activity_editar_materia_prima">EditarMateriaPrima</string>
+    <string name="title_activity_editar_proveedor">EditarProveedor</string>
 </resources>
