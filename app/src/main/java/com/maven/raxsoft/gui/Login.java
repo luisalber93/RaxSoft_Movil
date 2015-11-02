@@ -3,6 +3,7 @@ package com.maven.raxsoft.gui;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.maven.raxsoft.R;
@@ -18,7 +19,10 @@ public class Login extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_login, menu);
+//        getMenuInflater().inflate(R.menu.menu_login, menu);
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_login,menu);
         return true;
     }
 
