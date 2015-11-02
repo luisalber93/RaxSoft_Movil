@@ -10,9 +10,11 @@ public class GenericDAO {
 
     protected SQLiteHelper helper;
     protected SQLiteDatabase database;
+    protected Context context;
 
     public GenericDAO(Context context){
         this.helper= new SQLiteHelper(context);
+        this.context = context;
     }
 
     /**

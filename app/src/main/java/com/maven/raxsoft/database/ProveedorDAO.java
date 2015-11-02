@@ -32,7 +32,7 @@ public class ProveedorDAO extends GenericDAO {
         //Se abre la base de datos para realizar la inserción.
         abrir();
         //Se realiza la inserción y se obtiene el resultado.
-        boolean success = (database.insert(InventariosContract.ProveedorTable.TABLE_NAME,null,values)!=-1)?true:false;
+        boolean success = (database.insert(InventariosContract.ProveedorTable.TABLE_NAME,null,values)!=-1);
         //Se cierra la base de datos.
         cerrar();
         String mensaje = (success)?"Proveedor registrado exitosamente":"Ocurrió un error al insertar el nuevo proveedor. Por favor inténtelo de nuevo.";
@@ -58,7 +58,7 @@ public class ProveedorDAO extends GenericDAO {
         values.put(InventariosContract.ProveedorTable.COLUMN_NAME_USO, 0); //El cero represena el borrado lógico del proveedor.
         //Se abre la base de datos.
         abrir();
-        boolean success = (database.update(InventariosContract.ProveedorTable.TABLE_NAME, values, whereClause, whereArgs)>0)?true:false;
+        boolean success = (database.update(InventariosContract.ProveedorTable.TABLE_NAME, values, whereClause, whereArgs)>0);
         //Se cierra la base de datos.
         cerrar();
         String mensaje = (success)?"Proveedor eliminado exitosamente":"Ocurrió un error al eliminar el proveedor. Por favor inténtelo de nuevo.";
@@ -81,7 +81,7 @@ public class ProveedorDAO extends GenericDAO {
         //Se realiza la operación de base de datos.
         //Se abre la base de datos.
         abrir();
-        boolean success = (database.update(InventariosContract.ProveedorTable.TABLE_NAME, values, whereClause, whereArgs)>0)?true:false;
+        boolean success = (database.update(InventariosContract.ProveedorTable.TABLE_NAME, values, whereClause, whereArgs)>0);
         //Se cierra la base de datos.
         cerrar();
         String mensaje = (success)?"Proveedor actualizado exitosamente":"Ocurrió un error al actualizar el proveedor. Por favor inténtelo de nuevo.";
