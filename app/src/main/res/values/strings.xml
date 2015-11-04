@@ -12,6 +12,7 @@
     <string name="strExistenciaMaximaMateriaPrima">Existencia Máxima de Materia Prima</string>
     <string name="strExistenciaMinimaMateriaPrima">Existencia Mínima de Materia Prima</string>
 
+    <string name="strCostoMateriaPrima">Costo de la Materia Prima</string>
 
 
 
@@ -21,7 +22,7 @@
     <string name="strEstado">Estado</string>
     <string name="strColonia">Colonia</string>
     <string name="strMunicipio">Municipio</string>
-    <string name="strTelefono">Telefono</string>
+    <string name="strTelefono">Teléfono</string>
     <string name="strCorreoElectronico">Correo Electrónico</string>
     <string name="strGiro">Giro</string>
 

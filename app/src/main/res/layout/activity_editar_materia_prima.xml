@@ -9,7 +9,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -116,8 +117,8 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/str"
-                android:id="@+id/idBtnActualizarProducto" />
+                android:hint="@+id/strBtnActualizar"
+                android:id="@+id/strBtnActualizar" />
         </LinearLayout>
 
     </LinearLayout>
