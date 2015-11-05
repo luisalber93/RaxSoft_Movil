@@ -61,6 +61,8 @@ public class MovimientoDAO extends GenericDAO {
                 break;
             //Se registra un ajuste.
             case 3:
+                historyEntrySuccess = histDAO.registrarAjuste(materiaID,nuevaCantidad);
+                mensaje = (success&&historyEntrySuccess)?"Registro de ajuste de inventario exitoso.":"El registro del ajuste salió mal. Por favor inténtelo de nuevo.";
                 break;
         }
 

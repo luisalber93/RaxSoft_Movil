@@ -16,6 +16,7 @@ public class MateriaPrima {
     private int existenciasMax;
     private int uso;
     private List<Proveedor> proveedores;
+    private int existenciasActuales;
 
     /**
      * Getters y Setters.
@@ -91,5 +92,13 @@ public class MateriaPrima {
 
     public void setProveedores(List<Proveedor> proveedores) {
         this.proveedores = proveedores;
+    }
+
+    public int getExistenciasActuales() {
+        return existenciasActuales;
+    }
+
+    public void setExistenciasActuales(int existenciasActuales) {
+        this.existenciasActuales = existenciasActuales;
     }
 }
