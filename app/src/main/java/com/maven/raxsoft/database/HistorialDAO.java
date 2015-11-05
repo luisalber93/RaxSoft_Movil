@@ -23,7 +23,7 @@ public class HistorialDAO extends GenericDAO {
 
 
     /**
-     * Método que registra una salida en el Inventario.
+     * Método que registra una salida en el historial en el Inventario.
      */
 
     public boolean registrarSalida(int materiaID, int cantidadModificada){
@@ -41,9 +41,49 @@ public class HistorialDAO extends GenericDAO {
         cerrar();
 
         return retorno;
+    }
+
+    /**
+     * Método que registra una entrada en el almacén.
+     */
+
+    public boolean registraEntrada(int materiaID, int cantidadModificada, int proveedorID, double costo){
+        //Se genera el contentValues para el la inserción en historial.
+        ContentValues values = new ContentValues();
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_ID_MATERIA,materiaID);
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_CANTIDAD,cantidadModificada);
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_FECHA,getCurrentTime());
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV,MOV_ENTRADA);
+        //values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
+
+        //Se realiza la inserción:
+        abrir();
+        long idMovimiento = database.insert(InventariosContract.HistorialTable.TABLE_NAME,null,values);
+        cerrar();
+
+        boolean retorno = false;
+        if(idMovimiento != -1){
+            //Si la inserción en el historial fue exitosa, entonces se inserta en la Tabla de Detalle_Entrada.
+            //Se genera el ContentValues.
+            ContentValues detalleValues =  new ContentValues();
+            detalleValues.put(InventariosContract.DetalleEntradaTable.COLUMN_NAME_ID_MOVIMIENTO,idMovimiento);
+            detalleValues.put(InventariosContract.DetalleEntradaTable.COLUMN_NAME_ID_PROVEEDOR,proveedorID);
+            detalleValues.put(InventariosContract.DetalleEntradaTable.COLUMN_NAME_COSTO, costo);
+
+            //Se realiza la inserción.
+            abrir();
+            retorno = (database.insert(InventariosContract.DetalleEntradaTable.TABLE_NAME,null,detalleValues)!=-1);
+            cerrar();
+        }
 
 
+        return retorno;
+    }
 
+    public boolean registrarAjuste(int materiaID,int nvaExistencia){
+
+
+        return true;
     }
 
     /**

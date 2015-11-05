@@ -51,11 +51,13 @@ public class MovimientoDAO extends GenericDAO {
         switch(tipoMov){
             //Se registra una entrada.
             case 1:
+                historyEntrySuccess = histDAO.registraEntrada(materiaID,cantidadModificada,proveedorID,costo);
+                mensaje = (success&&historyEntrySuccess)?"Registro de Entrada exitoso.":"El registro de entrada salió mal. Por favor inténtelo de nuevo.";
                 break;
             //Se registra una salida.
             case 2:
                 historyEntrySuccess = histDAO.registrarSalida(materiaID,cantidadModificada);
-                mensaje = (success&&historyEntrySuccess)?"Registro de salida exitoso":"El registro de salida salió mal. Por favor inténtelo de nuevo";
+                mensaje = (success&&historyEntrySuccess)?"Registro de salida exitoso.":"El registro de salida salió mal. Por favor inténtelo de nuevo.";
                 break;
             //Se registra un ajuste.
             case 3:
@@ -67,9 +69,6 @@ public class MovimientoDAO extends GenericDAO {
         Log.i(SQLiteHelper.LOG_TAG,mensaje);
 
         return  new ErrorDB(success&&historyEntrySuccess,mensaje);
-
-
-
 
     }
 
