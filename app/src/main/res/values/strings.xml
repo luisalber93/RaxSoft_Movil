@@ -47,4 +47,15 @@
     <string name="title_activity_informacion_proveedor">InformacionProveedor</string>
     <string name="title_activity_editar_materia_prima">EditarMateriaPrima</string>
     <string name="title_activity_editar_proveedor">EditarProveedor</string>
+
+
+    <!--String Arrays-->
+    <string-array name="MenuPrincipal">
+        <item>Proveedores</item>
+        <item>Materias Primas</item>
+        <item>Reportes</item>
+        <item>Salir</item>
+    </string-array>
+    <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
 </resources>
+

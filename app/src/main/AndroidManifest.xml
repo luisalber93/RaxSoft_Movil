@@ -48,6 +48,10 @@
             android:name=".gui.EditarProveedor"
             android:label="@string/title_activity_editar_proveedor" >
         </activity>
+        <activity
+            android:name=".gui.PantallaPrincipal"
+            android:label="@string/title_activity_pantalla_principal" >
+        </activity>
     </application>
 
 </manifest>
