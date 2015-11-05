@@ -56,6 +56,17 @@
         <item>Reportes</item>
         <item>Salir</item>
     </string-array>
-    <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
-</resources>
 
+    <!--Submenus-->
+    <string-array name="submenuProveedores">
+        <item>Agregar Nuevo</item>
+        <item>Salir</item>
+    </string-array>
+
+    <!-- Drawer String-->
+    <string name="openDrawer">Abriendo Drawer</string>
+    <string name="closeDrawer">Cerradon Drawer</string>
+    <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
+
+
+</resources>

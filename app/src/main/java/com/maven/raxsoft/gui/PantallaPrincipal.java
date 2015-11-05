@@ -1,7 +1,9 @@
 package com.maven.raxsoft.gui;
 
 import android.content.Intent;
+import android.os.PersistableBundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +23,8 @@ public class PantallaPrincipal extends AppCompatActivity {
     DrawerLayout drawerLayout;
     ListView listView;
     String[] menuPaginaPrincipal;
-    Button btnIngresar;
+    private ActionBarDrawerToggle drawerListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +35,8 @@ public class PantallaPrincipal extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         menuPaginaPrincipal = getResources().getStringArray(R.array.MenuPrincipal);
         listView.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1,
+                android.R.layout.simple_expandable_list_item_2,
+                android.R.id.text1,
                 menuPaginaPrincipal));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,9 +48,9 @@ public class PantallaPrincipal extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 Log.i("opcion", String.valueOf(arg2));
 
-                switch (menuPaginaPrincipal[arg2]){
+                switch (menuPaginaPrincipal[arg2]) {
                     case "Proveedores":
-                        Intent opcionProveedores= new Intent(PantallaPrincipal.this,Proveedores.class);
+                        Intent opcionProveedores = new Intent(PantallaPrincipal.this, Proveedores.class);
                         startActivity(opcionProveedores);
                         break;
                     case "Materias Primas":
@@ -56,15 +60,25 @@ public class PantallaPrincipal extends AppCompatActivity {
 
                 }
                 drawerLayout.closeDrawers();
+
             }
         });
 
+//        drawerLayout.setDrawerListener(drawerListener);
+//        getSupportActionBar().setHomeButtonEnabled(true);
+////        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Mostramos el botón en la barra de la aplicación
+
 //       this. getActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerListener.onOptionsItemSelected(item)){
+            return true;
+        }
         switch (item.getItemId()) {
             case android.R.id.home:
                 if (drawerLayout.isDrawerOpen(listView)) {
