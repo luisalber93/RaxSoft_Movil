@@ -5,16 +5,24 @@
 <!--String TextView-->
     <string name="strUsuario">Usuario</string>
     <string name="strContraseña">Contraseña</string>
-    <string name="strCodigoProducto">Código Producto</string>
-    <string name="strNombreProudcto">Nombre del Producto</string>
-    <string name="strDescripcionProducto">Descripción del Producto</string>
-    <string name="strCostoProducto">Costo del Producto</string>
+    <string name="strCodigoProducto">Código Materia Prima</string>
+    <string name="strNombreProudcto">Nombre de la Materia Prima</string>
+    <string name="strDescripcionProducto">Descripción de la Materia Prima</string>
+    <string name="strUnidadMateriaPrima">Unidad de la Materia Prima</string>
+    <string name="strExistenciaMaximaMateriaPrima">Existencia Máxima de Materia Prima</string>
+    <string name="strExistenciaMinimaMateriaPrima">Existencia Mínima de Materia Prima</string>
+
+    <string name="strCostoMateriaPrima">Costo de la Materia Prima</string>
+
+
+
+
     <string name="strRazonSocial">Razon Social</string>
     <string name="strCalle">Calle</string>
     <string name="strEstado">Estado</string>
     <string name="strColonia">Colonia</string>
     <string name="strMunicipio">Municipio</string>
-    <string name="strTelefono">Telefono</string>
+    <string name="strTelefono">Teléfono</string>
     <string name="strCorreoElectronico">Correo Electrónico</string>
     <string name="strGiro">Giro</string>
 
