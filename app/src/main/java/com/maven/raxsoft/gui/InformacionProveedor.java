@@ -20,7 +20,7 @@ public class InformacionProveedor extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion_proveedor);
 
-        listView = (ListView) findViewById(R.id.drawerInfoProveedores);
+        listView = (ListView) findViewById(R.id.drawer_layout);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         menuPaginaPrincipal = getResources().getStringArray(R.array.MenuPrincipal);
         listView.setAdapter(new ArrayAdapter<String>(this,
