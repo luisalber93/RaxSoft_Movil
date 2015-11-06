@@ -117,7 +117,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@+id/strBtnActualizar"
+                android:hint="@string/strBtnActualizar"
                 android:id="@+id/strBtnActualizar" />
         </LinearLayout>
 
