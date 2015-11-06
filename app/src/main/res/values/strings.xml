@@ -11,7 +11,8 @@
     <string name="strUnidadMateriaPrima">Unidad de la Materia Prima</string>
     <string name="strExistenciaMaximaMateriaPrima">Existencia Máxima de Materia Prima</string>
     <string name="strExistenciaMinimaMateriaPrima">Existencia Mínima de Materia Prima</string>
-
+    <string name="strCostoProducto">Costro de Materia Prima
+    </string>
     <string name="strCostoMateriaPrima">Costo de la Materia Prima</string>
 
 
