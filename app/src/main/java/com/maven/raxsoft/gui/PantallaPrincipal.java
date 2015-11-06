@@ -35,7 +35,7 @@ public class PantallaPrincipal extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         menuPaginaPrincipal = getResources().getStringArray(R.array.MenuPrincipal);
         listView.setAdapter(new ArrayAdapter<String>(this,
-                android.R.layout.simple_expandable_list_item_2,
+                android.R.layout.simple_list_item_1,
                 android.R.id.text1,
                 menuPaginaPrincipal));
 
@@ -46,7 +46,6 @@ public class PantallaPrincipal extends AppCompatActivity {
                                     long arg3) {
                 Toast.makeText(PantallaPrincipal.this, "Item: " + menuPaginaPrincipal[arg2],
                         Toast.LENGTH_SHORT).show();
-                Log.i("opcion", String.valueOf(arg2));
 
                 switch (menuPaginaPrincipal[arg2]) {
                     case "Proveedores":

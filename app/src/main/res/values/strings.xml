@@ -15,9 +15,6 @@
     </string>
     <string name="strCostoMateriaPrima">Costo de la Materia Prima</string>
 
-
-
-
     <string name="strRazonSocial">Razon Social</string>
     <string name="strCalle">Calle</string>
     <string name="strEstado">Estado</string>
@@ -26,9 +23,27 @@
     <string name="strTelefono">Teléfono</string>
     <string name="strCorreoElectronico">Correo Electrónico</string>
     <string name="strGiro">Giro</string>
+    <string name="strUnidad">Unidad de la Materia Prima:</string>
+    <string name="strProveedores">Proveedores:</string>
+    <string name="strNumeroCalle">Número</string>
+
+    <string name="strExistencias">Existencias:</string>
+    <string name="strExistenciaMinima">Min:</string>
+    <string name="strExistenciaMaxima">Máx:</string>
 
     <!-- String Spinner-->
-    <string name="strSpinnerProveedores">Proveedores</string>
+    <string-array name="strSpinnerUnidades">
+        <item>Pieza</item>
+        <item>Paquete</item>
+    </string-array>
+
+    <string-array name="strSpinnerEstados">
+        <item>Querétaro</item>
+        <item>Estádo de México</item>
+    </string-array>
+
+    <string-array name="strSpineerMunicipiosQueretaro"></string-array>
+    <string-array name="strSpineerMunicipiosEdoMexico"></string-array>
 
     <!-- String Botones-->
     <string name="strBtnIngresar">Ingresar</string>
