@@ -11,9 +11,16 @@
     <string name="strUnidadMateriaPrima">Unidad de la Materia Prima</string>
     <string name="strExistenciaMaximaMateriaPrima">Existencia Máxima de Materia Prima</string>
     <string name="strExistenciaMinimaMateriaPrima">Existencia Mínima de Materia Prima</string>
-    <string name="strCostoProducto">Costro de Materia Prima
-    </string>
+    <string name="strCostoProducto">Costro de Materia Prima</string>
     <string name="strCostoMateriaPrima">Costo de la Materia Prima</string>
+    <string name="strProveedores">Proveedores</string>
+    <string name="strExistencias">Existencias</string>
+    <string name="strExistenciaMinima">Existencia Mínima</string>
+    <string name="strExistenciaMaxima">Existencia Máxima</string>
+
+
+
+
 
 
 
@@ -72,10 +79,22 @@
         <item>Salir</item>
     </string-array>
 
+
+
+
+
     <!-- Drawer String-->
     <string name="openDrawer">Abriendo Drawer</string>
     <string name="closeDrawer">Cerradon Drawer</string>
     <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
+
+
+    <!--Unidades-->
+    <string-array name="strSpinnerUnidades">
+        <item>Gramos</item>
+        <item>Litros</item>
+    </string-array>
+
 
 
 </resources>
