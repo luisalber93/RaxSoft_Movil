@@ -21,10 +21,6 @@
             android:label="@string/title_activity_materias_primas" >
         </activity>
         <activity
-            android:name=".gui.InformacionProducto"
-            android:label="@string/title_activity_informacion_producto" >
-        </activity>
-        <activity
             android:name=".gui.RegistrarMateriaPrima"
             android:label="@string/title_activity_registrar_materia_prima" >
         </activity>
@@ -35,18 +31,6 @@
         <activity
             android:name=".gui.Proveedores"
             android:label="@string/title_activity_proveedores" >
-        </activity>
-        <activity
-            android:name=".gui.InformacionProveedor"
-            android:label="@string/title_activity_informacion_proveedor" >
-        </activity>
-        <activity
-            android:name=".gui.EditarMateriaPrima"
-            android:label="@string/title_activity_editar_materia_prima" >
-        </activity>
-        <activity
-            android:name=".gui.EditarProveedor"
-            android:label="@string/title_activity_editar_proveedor" >
         </activity>
         <activity
             android:name=".gui.PantallaPrincipal"

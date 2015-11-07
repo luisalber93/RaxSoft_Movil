@@ -39,23 +39,13 @@
                 android:id="@+id/idEdTeEditarCalle" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/strNumero"
+                android:hint="@string/strColonia"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarNumero"
-                android:layout_weight="1" />
-
+                android:id="@+id/idEdTeEditarColonia" />
         </LinearLayout>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="@string/strColonia"
-            android:ems="10"
-            android:id="@+id/idEdTeEditarColonia" />
 
         <LinearLayout
             android:orientation="horizontal"

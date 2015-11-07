@@ -18,9 +18,8 @@
 
 
 
-    <string name="strRazonSocial">Nombre de la Org.</string>
+    <string name="strRazonSocial">Razon Social</string>
     <string name="strCalle">Calle</string>
-    <string name="strNumero">Número</string>
     <string name="strEstado">Estado</string>
     <string name="strColonia">Colonia</string>
     <string name="strMunicipio">Municipio</string>

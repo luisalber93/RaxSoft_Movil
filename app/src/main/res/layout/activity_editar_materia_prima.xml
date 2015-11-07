@@ -9,8 +9,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -18,7 +17,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="260dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="@string/strCodigoProducto"
@@ -32,7 +31,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="253dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="@string/strNombreProudcto"
@@ -46,7 +45,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="246dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="@string/strDescripcionProducto"
@@ -60,12 +59,12 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="247dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
-                android:hint="@string/strUnidadMateriaPrima"
+                android:hint="@string/strCostoProducto"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarUnidad" />
+                android:id="@+id/idEdTeEditarCostoProducto" />
         </LinearLayout>
 
         <LinearLayout
@@ -81,46 +80,15 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <EditText
-                android:layout_width="247dp"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="@string/strExistenciaMinimaMateriaPrima"
-                android:ems="10"
-                android:id="@+id/idEdTeEditarExistenciaMinima" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
-
-            <EditText
-                android:layout_width="247dp"
-                android:layout_height="wrap_content"
-                android:inputType="numberDecimal"
-                android:hint="@string/strExistenciaMaximaMateriaPrima"
-                android:ems="10"
-                android:id="@+id/idEdTeEditarExistenciaMaxima" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@+id/strBtnActualizar"
-                android:id="@+id/strBtnActualizar" />
+                android:hint="@string/strBtnActualizar"
+                android:id="@+id/idBtnActualizarProducto" />
         </LinearLayout>
-
     </LinearLayout>
 
 </RelativeLayout>

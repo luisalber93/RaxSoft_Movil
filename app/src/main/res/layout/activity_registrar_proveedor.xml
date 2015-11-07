@@ -22,7 +22,7 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strRazonSocial"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarRazonSocial" />
+                android:id="@+id/idEdTeRazonSocial" />
         </LinearLayout>
 
         <LinearLayout
@@ -36,26 +36,16 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strCalle"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarCalle" />
+                android:id="@+id/idEdTeCalle" />
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
-                android:hint="@string/strNumero"
+                android:hint="@string/strColonia"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarNumero"
-                android:layout_weight="1" />
-
+                android:id="@+id/idEdTeColonia" />
         </LinearLayout>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:hint="@string/strColonia"
-            android:ems="10"
-            android:id="@+id/idEdTeEditarColonia" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -68,7 +58,7 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strEstado"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarEstado" />
+                android:id="@+id/idEdTeEstado" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -76,7 +66,7 @@
                 android:inputType="textPersonName"
                 android:hint="@string/strMunicipio"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarMunicipio" />
+                android:id="@+id/idEdTeMunicipio" />
         </LinearLayout>
 
         <LinearLayout
@@ -90,7 +80,7 @@
                 android:inputType="phone"
                 android:hint="@string/strTelefono"
                 android:ems="10"
-                android:id="@+id/idEdEditarTeTelofono" />
+                android:id="@+id/idEdTeTelofono" />
         </LinearLayout>
 
         <LinearLayout
@@ -104,7 +94,7 @@
                 android:inputType="textEmailAddress"
                 android:hint="@string/strCorreoElectronico"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarCorreoElectronico" />
+                android:id="@+id/idEdTeCorreoElectronico" />
         </LinearLayout>
 
         <LinearLayout
@@ -118,7 +108,7 @@
                 android:inputType="textMultiLine"
                 android:hint="@string/strGiro"
                 android:ems="10"
-                android:id="@+id/idEdTeEditarGiro" />
+                android:id="@+id/idEdTeGiro" />
         </LinearLayout>
 
         <LinearLayout
@@ -130,7 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/strBtnRegistrar"
-                android:id="@+id/idBtnEditarRegistrarProveedor" />
+                android:id="@+id/idBtnRegistrarProveedor" />
         </LinearLayout>
 
     </LinearLayout>
