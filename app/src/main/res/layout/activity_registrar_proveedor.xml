@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="@string/strRazonSocial"
@@ -31,12 +31,29 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:hint="@string/strCalle"
                 android:ems="10"
-                android:id="@+id/idEdTeCalle" />
+                android:id="@+id/idEdTeCalle"
+                android:layout_weight="1" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="@string/strNumero"
+                android:ems="10"
+                android:id="@+id/idEdTeNum"
+                android:layout_weight="1"
+                android:allowUndo="false" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="match_parent"
@@ -47,26 +64,54 @@
                 android:id="@+id/idEdTeColonia" />
         </LinearLayout>
 
+
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="@string/strEstado"
-                android:ems="10"
-                android:id="@+id/idEdTeEstado" />
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="@string/strMunicipio"
-                android:ems="10"
-                android:id="@+id/idEdTeMunicipio" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/strEstado"
+                    android:id="@+id/textView8"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spEstado"
+                    android:spinnerMode="dialog" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/strMunicipio"
+                    android:id="@+id/textView7"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spMunicipio"
+                    android:spinnerMode="dialog" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -75,12 +120,13 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="phone"
                 android:hint="@string/strTelefono"
                 android:ems="10"
-                android:id="@+id/idEdTeTelofono" />
+                android:id="@+id/idEdTeTelofono"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -89,12 +135,13 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="@string/strCorreoElectronico"
                 android:ems="10"
-                android:id="@+id/idEdTeCorreoElectronico" />
+                android:id="@+id/idEdTeCorreoElectronico"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -103,12 +150,13 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:hint="@string/strGiro"
                 android:ems="10"
-                android:id="@+id/idEdTeGiro" />
+                android:id="@+id/idEdTeGiro"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -117,10 +165,11 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/strBtnRegistrar"
-                android:id="@+id/idBtnRegistrarProveedor" />
+                android:id="@+id/idBtnGuardarProveedor"
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>

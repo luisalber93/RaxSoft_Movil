@@ -17,16 +17,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/logo_pagina_principal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>
         <ListView
         android:id="@+id/drawerPantallaPrincipal"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
-        android:background="#007095"
+        android:background="#e9a9be"
         android:choiceMode="singleChoice"
-        android:divider="#005875"
+        android:divider="#db7093"
         android:dividerHeight="2dp"
         android:headerDividersEnabled="false" />
 </android.support.v4.widget.DrawerLayout>

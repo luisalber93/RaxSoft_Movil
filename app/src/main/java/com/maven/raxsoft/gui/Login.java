@@ -12,10 +12,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.maven.raxsoft.R;
+import com.maven.raxsoft.database.UsuarioDAO;
+import com.maven.raxsoft.models.ErrorDB;
 
 public class Login extends ActionBarActivity {
 
@@ -23,47 +26,29 @@ public class Login extends ActionBarActivity {
 //    ListView listView;
 //    String[] menuPaginaPrincipal ;
     Button btnIngresar;
+    EditText inpUsurio;
+    EditText inpPasswd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-//        Funcionamiento del boton para iniciar sesion
-        btnIngresar=(Button) findViewById(R.id.btnIngresar);
+
+//      Creación de referencias para componentes de la GUI.
+        initComponents();
+
 
 
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentIngresar= new Intent(Login.this,PantallaPrincipal.class);
-                startActivity(intentIngresar);
+                authenticateUser();
             }
         });
 
 
 
-
-//        listView = (ListView) findViewById(R.id.list_view);
-//        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        menuPaginaPrincipal= getResources().getStringArray(R.array.menuPaginaPrincipal);
-//        listView.setAdapter(new ArrayAdapter<String>(this,
-//                android.R.layout.simple_list_item_1, android.R.id.text1,
-//                menuPaginaPrincipal));
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//            @Override
-//            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-//                                    long arg3) {
-//                Toast.makeText(Login.this, "Item: " + menuPaginaPrincipal[arg2],
-//                        Toast.LENGTH_SHORT).show();
-//                drawerLayout.closeDrawers();
-//            }
-//        });
-
-        // Mostramos el botón en la barra de la aplicación
-//       this. getActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
 
@@ -84,5 +69,41 @@ public class Login extends ActionBarActivity {
 //        }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initComponents(){
+        btnIngresar=(Button) findViewById(R.id.btnIngresar);
+        inpUsurio = (EditText) findViewById(R.id.idEdTeUsuario);
+        inpPasswd = (EditText) findViewById(R.id.idEdTeContraseña);
+
+    }
+
+    private void authenticateUser(){
+        //SE crea el DAO para consultar el usuario.
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this);
+        String usuario = inpUsurio.getText().toString();
+        String passwd = inpPasswd.getText().toString();
+
+        //Se realiza la consulta
+        ErrorDB result=usuarioDAO.authenticateUser(usuario,passwd);
+
+        result.setSuccess(true);
+        result.setMensaje("admin");
+
+        if(result.isSuccess()){
+            //Se crea un bundle para enviar el role.
+            Bundle bundle = new Bundle();
+            bundle.putString("role",result.getMensaje());
+            //Se crea el Intent para lanzar el activity.
+            Intent principalIntent = new Intent(Login.this,PantallaPrincipal.class);
+            principalIntent.putExtras(bundle);
+            startActivity(principalIntent);
+        }else{
+            Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
+            //Se limpian los campos
+            inpUsurio.setText("");
+            inpPasswd.setText("");
+        }
+
     }
 }

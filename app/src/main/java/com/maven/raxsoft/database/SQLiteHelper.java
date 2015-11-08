@@ -1,5 +1,6 @@
 package com.maven.raxsoft.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -42,13 +43,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Se ejecutan todas las sentencias de creación de las tablas.
         for (String createStatement: createStatements) {
+            Log.i(SQLiteHelper.LOG_TAG,"Sentencia de Creación: "+createStatement);
             sqLiteDatabase.execSQL(createStatement);
         }
         Log.i(SQLiteHelper.LOG_TAG,"Se ha creado la base de datos exitosamente.");
 
         //Incluir en este apartado sentencias para poblar las tablas requeridas.
 
-        Log.i(SQLiteHelper.LOG_TAG,"Se han insertado las filas de población preliminar de tablas.");
+        long idAdmin = sqLiteDatabase.insert(InventariosContract.UsuarioTable.TABLE_NAME,null,getUsuariosValues("RaxAdmin","R4xS0ft4dmin","admin","9c:a9:e4:c0:f8:fb"));
+        long idEmp = sqLiteDatabase.insert(InventariosContract.UsuarioTable.TABLE_NAME,null,getUsuariosValues("RaxEmp", "R4xS0ft3mp", "emp", "9c:a9:e4:c0:f8:fb"));
+
+        Log.i(SQLiteHelper.LOG_TAG, "Se han insertado las filas de población preliminar de tablas: "+idAdmin+","+idEmp);
     }
 
     @Override
@@ -63,5 +68,17 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             //Se ejecuta el método onCreate para recrear la base de datos.
             onCreate(sqLiteDatabase);
         }
+    }
+
+    private ContentValues getUsuariosValues(String usuario,String password, String acceso, String mac){
+
+        ContentValues values = new ContentValues();
+        values.put(InventariosContract.UsuarioTable.COLUMN_NAME_USUARIO,usuario);
+        values.put(InventariosContract.UsuarioTable.COLUMN_NAME_PASSWORD,password);
+        values.put(InventariosContract.UsuarioTable.COLUMN_NAME_ACCESO,acceso);
+        values.put(InventariosContract.UsuarioTable.COLUMN_NAME_MAC_ADD,mac);
+
+        return values;
+
     }
 }

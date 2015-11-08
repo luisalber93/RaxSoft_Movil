@@ -30,20 +30,24 @@ public class UsuarioDAO extends GenericDAO {
         boolean autorizacion = false;
         if(usuario!=null){
 
-            //Se obtiene la dirección MAC del dispositivo.
-            String devicesMAC = getMAcAddress();
-            if(devicesMAC != null){
-                    //Si la dirección MAC no es nula, se compara con la obtenida de la BD para este usuario.
+            //Comentar las siguientes dos líneas al probar en un teléfono real.
+            mensaje = usuario.getRoleAcceso(); //Se pasa el role del usuario para ser manipulado.
+            autorizacion = true; //Se permite el acceso.
 
-                    if(devicesMAC.equals(usuario.getMac())){
-                        mensaje = usuario.getRoleAcceso(); //Se pasa el role del usuario para ser manipulado.
-                        autorizacion = true; //Se permite el acceso.
-                    }else{
-                        mensaje = "Dispositivo no registrado. Acceso denegado.";
-                    }
-            }else{
-                mensaje = "Por favor active el Wi-Fi para autenticarse.";
-            }
+            //Se obtiene la dirección MAC del dispositivo.
+//            String devicesMAC = getMAcAddress();
+//            if(devicesMAC != null){
+//                    //Si la dirección MAC no es nula, se compara con la obtenida de la BD para este usuario.
+//
+//                    if(devicesMAC.equals(usuario.getMac())){
+//                        mensaje = usuario.getRoleAcceso(); //Se pasa el role del usuario para ser manipulado.
+//                        autorizacion = true; //Se permite el acceso.
+//                    }else{
+//                        mensaje = "Dispositivo no registrado. Acceso denegado.";
+//                    }
+//            }else{
+//                mensaje = "Por favor active el Wi-Fi para autenticarse.";
+//            }
 
         }else{
             mensaje = "Usuario y/o Contraseña Inválidos. Acceso Denegado.";
@@ -64,7 +68,8 @@ public class UsuarioDAO extends GenericDAO {
         String whereClause = InventariosContract.UsuarioTable.COLUMN_NAME_USUARIO + " = ? AND " + InventariosContract.UsuarioTable.COLUMN_NAME_PASSWORD + " = ?";
         String [] whereArgs = new String[]{user,passwd};
         String [] columns = new String[]{InventariosContract.UsuarioTable.COLUMN_NAME_ACCESO,
-                InventariosContract.UsuarioTable.COLUMN_NAME_MAC_ADD};
+                InventariosContract.UsuarioTable.COLUMN_NAME_MAC_ADD,
+                InventariosContract.UsuarioTable._ID};
         abrir();
         Cursor cursor =database.query(InventariosContract.UsuarioTable.TABLE_NAME,columns,whereClause,whereArgs,null,null,null);
         if(cursor.moveToFirst()){
@@ -72,6 +77,7 @@ public class UsuarioDAO extends GenericDAO {
                 usuario = new Usuario();
                 usuario.setRoleAcceso(cursor.getString(0));
                 usuario.setMac(cursor.getString(1));
+                usuario.setId(cursor.getInt(2));
                 numRegistros++;
             }while(cursor.moveToNext());
         }
