@@ -10,8 +10,6 @@ import android.widget.TextView;
 
 import com.maven.raxsoft.R;
 
-import org.w3c.dom.Text;
-
 public class RegistrarMateriaPrima extends AppCompatActivity {
 
     Button btnMateriaPrima;
@@ -36,10 +34,11 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
             public void onClick(View v) {
 //                Validacion en Nombre de materia primar, valida: texto vacio, caracteres ilegales
                 Validaciones.ValidarTextoVacio(btnNombreProducto.getText().toString());
-                Validaciones.ValidacionCaracteres(btnNombreProducto.getText().toString());
-//                Validacion en descripcion de materia prima, valida: texto vacio, caracteres ilegales
+                Validaciones.ValidarCaracteres(btnNombreProducto.getText().toString());
+//                Validacion en descripcion de materia prima, valida: texto vacio, longitud menor a 140 caracteres, caracteres ilegales
                 Validaciones.ValidarTextoVacio(btnDescripcionProducto.getText().toString());
-                Validaciones.ValidacionCaracteres(btnDescripcionProducto.getText().toString());
+                Validaciones.ValidarCaracteres(btnDescripcionProducto.getText().toString());
+                Validaciones.ValidarLogitudCadena(btnDescripcionProducto.getText().toString());
 //                Validacion en minimo en materia prima, valida: texto vacio
                 Validaciones.ValidarTextoVacio(btnProductoMinimo.getText().toString());
 //                Validacion en maximo en materia prima, valida: texto vacio
