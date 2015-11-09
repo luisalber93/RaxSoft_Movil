@@ -4,15 +4,50 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.maven.raxsoft.R;
 
+import org.w3c.dom.Text;
+
 public class RegistrarMateriaPrima extends AppCompatActivity {
+
+    Button btnMateriaPrima;
+    TextView btnNombreProducto;
+    TextView btnDescripcionProducto;
+    TextView btnProductoMinimo;
+    TextView btnProductoMaximo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrar_materia_prima);
+
+        btnMateriaPrima = (Button) findViewById(R.id.idBtnRegistrarProducto);
+        btnNombreProducto = (TextView) findViewById(R.id.idEdTeNombreProducto);
+        btnDescripcionProducto = (TextView) findViewById(R.id.idEdTeDescripcionProducto);
+        btnProductoMinimo = (TextView) findViewById(R.id.idEdTeMinimo);
+        btnProductoMaximo = (TextView) findViewById(R.id.idEdTeMaximo);
+
+        btnMateriaPrima.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Validacion en Nombre de materia primar, valida: texto vacio, caracteres ilegales
+                Validaciones.ValidarTextoVacio(btnNombreProducto.getText().toString());
+                Validaciones.ValidacionCaracteres(btnNombreProducto.getText().toString());
+//                Validacion en descripcion de materia prima, valida: texto vacio, caracteres ilegales
+                Validaciones.ValidarTextoVacio(btnDescripcionProducto.getText().toString());
+                Validaciones.ValidacionCaracteres(btnDescripcionProducto.getText().toString());
+//                Validacion en minimo en materia prima, valida: texto vacio
+                Validaciones.ValidarTextoVacio(btnProductoMinimo.getText().toString());
+//                Validacion en maximo en materia prima, valida: texto vacio
+                Validaciones.ValidarTextoVacio(btnProductoMaximo.getText().toString());
+
+
+            }
+        });
     }
 
     @Override

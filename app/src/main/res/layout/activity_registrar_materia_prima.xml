@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText"
+                    android:id="@+id/idEdTeMinimo"
                     android:layout_weight="1" />
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText2"
+                    android:id="@+id/idEdTeMaximo"
                     android:layout_weight="1" />
             </LinearLayout>
 
