@@ -37,12 +37,15 @@ public class MateriaPrimaDAO extends GenericDAO {
         long materiaID = database.insert(InventariosContract.MateriaPrimaTable.TABLE_NAME, null, values);
         //Se cierra la base de datos.
         cerrar();
+        Log.i(SQLiteHelper.LOG_TAG,"****Inserción del registro en tabla materia prima***");
         boolean success = false;
         if (materiaID != -1) { //La inserción del registro de materia prima fue exitosa, de manera que se procede a insertar en la tabla Proveedor_Materia.
             abrir();
             success = insertProveedorMateria(materiaID, materia.getProveedores(), false);
+            Log.i(SQLiteHelper.LOG_TAG,"****Inserción de los proveedores***");
             //De igual modo se inserta en la tabla de Stock.
             success = createStock(materiaID);
+            Log.i(SQLiteHelper.LOG_TAG,"****Inserción del registro en stock***");
             cerrar();
 
         }
@@ -100,7 +103,9 @@ public class MateriaPrimaDAO extends GenericDAO {
 
         if (proveedoresChanged) {
             //Se actualizan los registros en la tabla Proveedor_Materia.
+            abrir();
             success = insertProveedorMateria(idMateria, materia.getProveedores(), true);
+            cerrar();
         }
 
 
@@ -196,6 +201,7 @@ public class MateriaPrimaDAO extends GenericDAO {
             } while (cursor.moveToNext());
         }
         //Se cierra la base de datos.
+        cerrar();
 
         //A continuación, se obtiene (usando el ProveedorDAO) el objeto asociado a cada id de Proveedor en la lista.
         ProveedorDAO provDAO = new ProveedorDAO(context);

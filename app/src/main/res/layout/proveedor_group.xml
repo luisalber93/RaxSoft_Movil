@@ -5,10 +5,10 @@
 
     <ImageView
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="75dp"
         android:id="@+id/imageProveedor"
         android:src="@drawable/proveedor"
-        android:contentDescription="@string/strContentIMagenProveedor"
+        android:contentDescription="@string/strContentImagenProveedor"
         android:layout_weight=".3" />
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:textStyle="bold"
             android:textSize="20sp"
             android:text="Office Depot S.A de C.V"
-            android:textColor="#660066" />
+            android:textColor="#cc4562" />
 
         <TextView
             android:layout_width="wrap_content"

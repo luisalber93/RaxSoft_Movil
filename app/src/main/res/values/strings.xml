@@ -17,6 +17,7 @@
     <string name="strExistencias">Existencias</string>
     <string name="strExistenciaMinima">Mínima</string>
     <string name="strExistenciaMaxima">Máxima</string>
+    <string name="strExistenciaActual">Actual</string>
 
 
     <string name="strRazonSocial">Razon Social</string>
@@ -28,6 +29,9 @@
     <string name="strTelefono">Teléfono</string>
     <string name="strCorreoElectronico">Correo Electrónico</string>
     <string name="strGiro">Giro</string>
+    <string name="strProveedor">Proveedor</string>
+    <string name="strDescripcion">Descripción</string>
+
 
     <!-- String Spinner-->
     <string name="strSpinnerProveedores">Proveedores</string>
@@ -100,7 +104,8 @@
     <string name="openDrawer">Abriendo Drawer</string>
     <string name="closeDrawer">Cerradon Drawer</string>
     <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
-    <string name="strContentIMagenProveedor">Logo Proveedor</string>
+    <string name="strContentImagenProveedor">Logo Proveedor</string>
+    <string name="strContentImagenMateria">Logo Materia Prima</string>
     <string name="strContacto">Contacto:</string>
     <string name="proveedorDetailPhone">Large Text</string>
     <string name="strDomicilio">Domicilio:</string>
@@ -108,8 +113,8 @@
 
     <!--Unidades-->
     <string-array name="strSpinnerUnidades">
-        <item>Gramos</item>
-        <item>Litros</item>
+        <item>Pieza</item>
+        <item>Paquete</item>
     </string-array>
 
 

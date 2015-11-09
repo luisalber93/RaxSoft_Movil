@@ -5,79 +5,87 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Login">
 
-    <LinearLayout
-        android:orientation="vertical"
+
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:weightSum="1">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:weightSum="1">
 
-                <ImageView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:id="@+id/imageView2"
-                    android:src="@drawable/img_login"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_alignParentStart="false"
-                    android:contentDescription="logo RaxSoft" />
-            </RelativeLayout>
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:id="@+id/imageView2"
+                        android:src="@drawable/img_login"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_alignParentStart="false"
+                        android:contentDescription="logo RaxSoft" />
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:hint="@string/strUsuario"
+                    android:ems="10"
+                    android:id="@+id/idEdTeUsuario"
+                    android:textAlignment="center"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/strContraseña"
+                    android:ems="10"
+                    android:id="@+id/idEdTeContraseña"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/strBtnIngresar"
+                    android:id="@+id/btnIngresar"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="@string/strUsuario"
-                android:ems="10"
-                android:id="@+id/idEdTeUsuario"
-                android:textAlignment="center"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/strContraseña"
-                android:ems="10"
-                android:id="@+id/idEdTeContraseña"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/strBtnIngresar"
-                android:id="@+id/btnIngresar"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>
