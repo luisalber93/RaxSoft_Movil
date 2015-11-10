@@ -36,6 +36,18 @@
             android:name=".gui.PantallaPrincipal"
             android:label="@string/title_activity_pantalla_principal" >
         </activity>
+        <activity
+            android:name=".gui.Movimiento"
+            android:label="@string/title_activity_movimiento" >
+        </activity>
+        <activity
+            android:name=".gui.Reportes"
+            android:label="@string/title_activity_reportes" >
+        </activity>
+        <activity
+            android:name=".gui.Existencias"
+            android:label="@string/title_activity_existencias" >
+        </activity>
     </application>
 
 </manifest>

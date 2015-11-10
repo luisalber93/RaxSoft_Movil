@@ -19,6 +19,10 @@ import com.maven.raxsoft.R;
 import com.maven.raxsoft.database.ProveedorDAO;
 import com.maven.raxsoft.models.ErrorDB;
 import com.maven.raxsoft.models.Proveedor;
+import com.maven.raxsoft.models.Validaciones;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegistrarProveedor extends AppCompatActivity {
 
@@ -43,6 +47,12 @@ public class RegistrarProveedor extends AppCompatActivity {
 
     //Variable booleana para evitar que el escuchador del spinner de estado se dispare al setear el estado por primera vez.
     private boolean firstTime;
+
+    //HashMap que almacena los mensajes de las validaciones.
+    private Map<Integer,String> mensajesValidacion;
+
+    //Array con el control de las validaciones.
+    private boolean [] validationControl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +130,21 @@ public class RegistrarProveedor extends AppCompatActivity {
         estados = getResources().getStringArray(R.array.estados);
         municipios = getResources().getStringArray(R.array.municipiosMexico);
         firstTime = true;
+
+        //Se llenan los mensajes de validación.
+        mensajesValidacion = new HashMap();
+        mensajesValidacion.put(0,"La razón social no puede estar vacía.");
+        mensajesValidacion.put(1,"La calle no puede estar vacía ni contener caracteres especiales.");
+        mensajesValidacion.put(2,"El número no puede ir vacío.");
+        mensajesValidacion.put(3,"La colonia no puede estar vacía ni contener caracteres especiales.");
+        mensajesValidacion.put(4,"El teléfono debe tener una longitud de entre 7 y 10 caracteres.");
+        mensajesValidacion.put(5,"El correo debe seguir el formato: algo@server.com");
+        mensajesValidacion.put(6,"El giro no debe contener caracteres especiales y debe ser menor a 140 caracteres.");
+
+        //Validation Control
+        validationControl = new boolean[7];
+
+
     }
 
     /**
@@ -205,13 +230,17 @@ public class RegistrarProveedor extends AppCompatActivity {
     private void updateProveedor(){
         //Insertar if con validación de campos.
 
-        //Se crea el DAO de proveedor para realizar la actualización.
-        ProveedorDAO provDAO = new ProveedorDAO(this);
-        ErrorDB result = provDAO.updateProveedor(retrieveProveedorFromFields(false), idActual);
-        Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
-        if(result.isSuccess()){
-            finishAndRefreshList();
+        if(validateFields()){
+            //Se crea el DAO de proveedor para realizar la actualización.
+            ProveedorDAO provDAO = new ProveedorDAO(this);
+            ErrorDB result = provDAO.updateProveedor(retrieveProveedorFromFields(false), idActual);
+            Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
+            if(result.isSuccess()){
+                finishAndRefreshList();
+            }
         }
+
+
 
     }
 
@@ -277,13 +306,17 @@ public class RegistrarProveedor extends AppCompatActivity {
 
         //Incluir if para la validación de campos.
 
-        //Se crea el DAO para la inserción del proveedor.
-        ProveedorDAO proveedorDAO = new ProveedorDAO(this);
-        ErrorDB result = proveedorDAO.insertProveedor(retrieveProveedorFromFields(true));
-        Toast.makeText(getBaseContext(),result.getMensaje(), Toast.LENGTH_SHORT).show();
-        if(result.isSuccess()){
-            finishAndRefreshList();
+        if(validateFields()){
+            //Se crea el DAO para la inserción del proveedor.
+            ProveedorDAO proveedorDAO = new ProveedorDAO(this);
+            ErrorDB result = proveedorDAO.insertProveedor(retrieveProveedorFromFields(true));
+            Toast.makeText(getBaseContext(),result.getMensaje(), Toast.LENGTH_SHORT).show();
+            if(result.isSuccess()){
+                finishAndRefreshList();
+            }
         }
+
+
 
 
     }
@@ -346,6 +379,46 @@ public class RegistrarProveedor extends AppCompatActivity {
         municipios = getResources().getStringArray(id);
         ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,municipios);
         municipio.setAdapter(adapter);
+    }
+
+    private boolean validateFields(){
+        //Se realizan las validaciones respectivas a cada campo y se asignan al array de validationControl.
+        //Razón Social.
+        validationControl[0]= Validaciones.validarTextoVacio(razonSocial.getText().toString());
+        //Calle
+        String cadenaCalle = calle.getText().toString();
+        validationControl[1] = Validaciones.validarTextoVacio(cadenaCalle)&&Validaciones.validarCaracteres(cadenaCalle);
+        //Numero
+        validationControl[2] = Validaciones.validarTextoVacio(numero.getText().toString());
+        //Colonia
+        String cadenaColonia = colonia.getText().toString();
+        validationControl[3] = Validaciones.validarTextoVacio(cadenaColonia)&&Validaciones.validarCaracteres(cadenaColonia);
+        //Teléfono.
+        validationControl[4]=Validaciones.validarTelefono(telefono.getText().toString());
+        //Correo.
+        validationControl[5] = Validaciones.validarCorreoElectronico(mail.getText().toString());
+        //Giro.
+        String cadenaGiro = giro.getText().toString();
+        validationControl[6]=Validaciones.validarTextoVacio(cadenaGiro)&&
+                             Validaciones.validarCaracteres(cadenaGiro)&&
+                             Validaciones.validarLongitudCadena(cadenaGiro);
+
+        //Se crea la variable de retorno.
+        boolean valid = true;
+        //Se recorre el arreglo de validation control en busca de una validación fallida.
+        for(int i=0;i<validationControl.length;i++){
+
+            //Si se encuentra un false en alguna posición...
+            if(!validationControl[i]){
+                valid=false; ///Falla la validación de campos.
+                Toast.makeText(getBaseContext(),mensajesValidacion.get(i),Toast.LENGTH_SHORT).show(); //Se presenta un mensaje.
+                break;//Se interrumpe la iteración del arreglo.
+            }
+
+        }
+
+        return valid;
+
     }
 
 

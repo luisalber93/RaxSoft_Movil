@@ -39,7 +39,8 @@
     <!-- String Botones-->
     <string name="strBtnIngresar">Ingresar</string>
     <string name="strBtnRegistrar">Registrar</string>
-    <string name="strBtnActualizar">Actualizar</string>
+    <string name="strConsultar">Consultar</string>
+    <string name="strActualizar">Actualizar</string>
 
     <!--String Menus-->
     <string name="hello_world">Hello world!</string>
@@ -63,6 +64,20 @@
     <string name="title_activity_informacion_proveedor">InformacionProveedor</string>
     <string name="title_activity_editar_materia_prima">EditarMateriaPrima</string>
     <string name="title_activity_editar_proveedor">EditarProveedor</string>
+
+    <!--String TextView Reportes-->
+    <string name="strSeleccioneelTipodeReporte.">Seleccione el Tipo de Reporte.</string>
+    <string name="strSeleccioneelPeriododelReporte.">Seleccione el Período del Reporte.</string>
+    <string name="strDesde">Desde: </string>
+    <string name="strHasta">Hasta: </string>
+
+    <!--String TextViewMovimientos-->
+    <string name="strEspecifiquelaCantidad">Ingrese los detalles del movimiento:</string>
+    <string name="strSpinnerProveedor">Proveedor:</string>
+    <string name="strSpinnerCosto">Costo:</string>
+    <string name="strNuevaCantidad">Cantidad:</string>
+    <string name="strEsAjuste">¿Es Ajuste de Inventario?</string>
+    <string name="strAjuste">Ajuste</string>
 
 
     <!--String Arrays-->
@@ -116,6 +131,15 @@
         <item>Pieza</item>
         <item>Paquete</item>
     </string-array>
+
+    <string-array name="strTiposReportes">
+        <item>Historial de Movimientos</item>
+        <item>Gastos de Entradas</item>
+    </string-array>
+    <string name="title_activity_movimiento">Movimiento de Inventario</string>
+    <string name="strLogoBanner">Logo Banner</string>
+    <string name="title_activity_reportes">Reportes</string>
+    <string name="title_activity_existencias">Existencias</string>
 
 
 </resources>

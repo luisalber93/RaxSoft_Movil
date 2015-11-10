@@ -84,7 +84,9 @@ public class MateriasPrimas extends AppCompatActivity {
                         finish();
                         break;
                     case "Salir":
-
+                        //Se finalizan todos los Activities.
+                        Toast.makeText(getBaseContext(),"¡Hasta Luego!",Toast.LENGTH_SHORT).show();
+                        finishAffinity();
                         break;
 
                 }

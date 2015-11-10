@@ -301,7 +301,7 @@ public class MateriaPrimaDAO extends GenericDAO {
         //Se crea el content values
         ContentValues values = new ContentValues();
         values.put(InventariosContract.StockTable.COLUMN_NAME_ID_MATERIA, materiaID);
-        values.put(InventariosContract.StockTable.COLUMN_NAME_EXISTENCIAS, 10);
+        values.put(InventariosContract.StockTable.COLUMN_NAME_EXISTENCIAS, 30);
         boolean retorno = (database.insert(InventariosContract.StockTable.TABLE_NAME, null, values) != -1);
 
         return retorno;

@@ -18,9 +18,9 @@ import java.util.List;
 public class HistorialDAO extends GenericDAO {
 
 
-    private final int MOV_ENTRADA = 1;
-    private final int MOV_SALIDA = 2;
-    private final int MOV_AJUSTE = 3;
+    public static final int MOV_ENTRADA = 1;
+    public static final int MOV_SALIDA = 2;
+    public static final int MOV_AJUSTE = 3;
 
 
     public HistorialDAO(Context context) {

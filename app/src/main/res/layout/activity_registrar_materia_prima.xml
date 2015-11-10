@@ -16,6 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#cc4562">
+                <ImageView
+                    android:layout_width="205dp"
+                    android:layout_height="118dp"
+                    android:id="@+id/imbLogo"
+                    android:src="@drawable/logo_pagina_principal2"
+                    android:contentDescription="@string/strLogoBanner" />
+
+            </LinearLayout>
+
+
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
@@ -27,7 +44,8 @@
                     android:inputType="textPersonName"
                     android:hint="@string/strNombreProudcto"
                     android:ems="10"
-                    android:id="@+id/idEdTeNombreProducto" />
+                    android:id="@+id/idEdTeNombreProducto"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
@@ -42,7 +60,8 @@
                     android:hint="@string/strDescripcionProducto"
                     android:ems="10"
                     android:id="@+id/idEdTeDescripcionProducto"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
@@ -55,7 +74,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/strUnidadMateriaPrima"
-                    android:id="@+id/textView" />
+                    android:id="@+id/textView"
+                    android:textColor="#cc4562" />
 
                 <Spinner
                     android:layout_width="match_parent"
@@ -76,7 +96,8 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="@string/strProveedores"
-                    android:id="@+id/textView2" />
+                    android:id="@+id/textView2"
+                    android:textColor="#cc4562" />
 
                 <Spinner
                     android:layout_width="match_parent"
@@ -100,7 +121,8 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/strExistencias"
-                        android:id="@+id/textView5" />
+                        android:id="@+id/textView5"
+                        android:textColor="#cc4562" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -115,7 +137,8 @@
                         android:text="@string/strExistenciaMinima"
                         android:id="@+id/textView3"
                         android:layout_weight="1"
-                        android:gravity="right" />
+                        android:gravity="right"
+                        android:textColor="#cc4562" />
 
                     <EditText
                         android:layout_width="0dp"
@@ -132,7 +155,8 @@
                         android:text="@string/strExistenciaMaxima"
                         android:id="@+id/textView4"
                         android:layout_weight="1"
-                        android:gravity="right" />
+                        android:gravity="right"
+                        android:textColor="#cc4562" />
 
                     <EditText
                         android:layout_width="0dp"

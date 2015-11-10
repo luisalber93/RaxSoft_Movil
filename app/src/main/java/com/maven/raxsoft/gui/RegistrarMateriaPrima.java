@@ -20,11 +20,14 @@ import com.maven.raxsoft.database.ProveedorDAO;
 import com.maven.raxsoft.models.ErrorDB;
 import com.maven.raxsoft.models.MateriaPrima;
 import com.maven.raxsoft.models.Proveedor;
+import com.maven.raxsoft.models.Validaciones;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RegistrarMateriaPrima extends AppCompatActivity {
 
@@ -54,6 +57,12 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
     int idActual;
     //Varaible para controlar el cambio en el proveedor.
     int idProveedorActual;
+
+    //Mapa con los mensajes de las validaciones.
+    private Map<Integer,String> mensajesValidaciones;
+
+    //Array que controla las validaciones.
+    private boolean[] validationControl;
 
 
     @Override
@@ -141,6 +150,18 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
             //Se llena el spinner de proveedores.
             adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, nombresProveedores);
             proveedorSpinner.setAdapter(adapter);
+
+            //Se inicializa el mapa de mensajes.
+            mensajesValidaciones = new HashMap();
+            mensajesValidaciones.put(0,"El nombre no puede estar vacío ni tener caracteres especiales.");
+            mensajesValidaciones.put(1,"La descripción debe ser menor a 140 caracteres y no debe contener caracteres especiales.");
+            mensajesValidaciones.put(2,"Las existencias mínimas no pueden estar vacías.");
+            mensajesValidaciones.put(3,"Las existencias máximas no pueden estar vacías.");
+            mensajesValidaciones.put(4,"Las existencias mínimas deben ser menores a las existencias máximas.");
+
+            //Se inicializa el validationControl
+            validationControl = new boolean[5];
+
         }
 
 
@@ -167,16 +188,20 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
 
     private void insertMateriaPrima(){
         //Insertar if de validaciones de campos.
-        //Se obtiene la materia prima de los campos.
-        MateriaPrima materia = retrieveMateriaFromFields(true,true);
-        //Se crea el DAO de materia prima para insertar los datos.
 
-        MateriaPrimaDAO materiaDAO = new MateriaPrimaDAO(this);
-        ErrorDB result = materiaDAO.insertMateriaPrima(materia);
-        Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
-        if(result.isSuccess()){
-            finishAndRefreshList();
+        if(validateFields()){
+            //Se obtiene la materia prima de los campos.
+            MateriaPrima materia = retrieveMateriaFromFields(true,true);
+            //Se crea el DAO de materia prima para insertar los datos.
+
+            MateriaPrimaDAO materiaDAO = new MateriaPrimaDAO(this);
+            ErrorDB result = materiaDAO.insertMateriaPrima(materia);
+            Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
+            if(result.isSuccess()){
+                finishAndRefreshList();
+            }
         }
+
     }
 
 
@@ -239,16 +264,21 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
 
     private void updateMateriaPrima(){
         //Insertar if de validación de campos.
-        boolean proveedorChanged = checkForProveedorChange();
-        //Se recupera la materia Prima de los campos.
-        MateriaPrima materia = retrieveMateriaFromFields(false,proveedorChanged);
-        //Se crea el DAO para realizar la actualización.
-        MateriaPrimaDAO materiaDAO = new MateriaPrimaDAO(this);
-        ErrorDB result = materiaDAO.updateMateriaPrima(materia,idActual,proveedorChanged);
-        Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
-        if(result.isSuccess()){
-            finishAndRefreshList();
+
+        if(validateFields()){
+            boolean proveedorChanged = checkForProveedorChange();
+            //Se recupera la materia Prima de los campos.
+            MateriaPrima materia = retrieveMateriaFromFields(false,proveedorChanged);
+            //Se crea el DAO para realizar la actualización.
+            MateriaPrimaDAO materiaDAO = new MateriaPrimaDAO(this);
+            ErrorDB result = materiaDAO.updateMateriaPrima(materia,idActual,proveedorChanged);
+            Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
+            if(result.isSuccess()){
+                finishAndRefreshList();
+            }
         }
+
+
     }
 
     private boolean checkForProveedorChange(){
@@ -353,5 +383,41 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
             materiaPrima.setUso(1);
         }
         return materiaPrima;
+    }
+
+
+    private boolean validateFields(){
+        //Se realizan las validaciones y se almacenan en el validationControl.
+        //Nombre
+        String cadenaNombre = nombreMateria.getText().toString();
+        validationControl[0] = Validaciones.validarTextoVacio(cadenaNombre)&&Validaciones.validarCaracteres(cadenaNombre);
+        //Descripcion.
+        String cadenaDescripcion = descripcionMateria.getText().toString();
+        validationControl[1] = Validaciones.validarTextoVacio(cadenaDescripcion)&&Validaciones.validarCaracteres(cadenaDescripcion)&&
+                Validaciones.validarLongitudCadena(cadenaDescripcion);
+        //Existencias Minimas.
+        String cadenaMinimas = existenciaMinima.getText().toString();
+        validationControl[2] = Validaciones.validarTextoVacio(cadenaMinimas);
+        //Existencias máximas.
+        String cadenaMaximas = existenciaMaxima.getText().toString();
+        validationControl[3] = Validaciones.validarTextoVacio(cadenaMaximas);
+
+        //Validar existenciasMin<existenciasMax.
+        validationControl[4] = (Integer.parseInt(cadenaMinimas)<Integer.parseInt(cadenaMaximas));
+
+        //Se crea la variable de retorno.
+        boolean valid = true;
+
+        //Se recorre el array en busca de una valdiación fallida.
+        for(int i=0;i<validationControl.length;i++){
+            //Se busca algún false en el array.
+            if(!validationControl[i]){
+                valid=false;
+                Toast.makeText(getBaseContext(),mensajesValidaciones.get(i),Toast.LENGTH_SHORT).show();
+                break;
+            }
+        }
+
+        return valid;
     }
 }

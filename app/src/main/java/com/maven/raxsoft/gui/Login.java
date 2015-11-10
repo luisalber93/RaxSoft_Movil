@@ -87,8 +87,8 @@ public class Login extends ActionBarActivity {
         //Se realiza la consulta
         ErrorDB result=usuarioDAO.authenticateUser(usuario,passwd);
 
-        result.setSuccess(true);
-        result.setMensaje("admin");
+//        result.setSuccess(true);
+//        result.setMensaje("emp");
 
         if(result.isSuccess()){
             //Se crea un bundle para enviar el role.

@@ -15,6 +15,21 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#cc4562">
+                <ImageView
+                    android:layout_width="205dp"
+                    android:layout_height="118dp"
+                    android:id="@+id/imbLogo"
+                    android:src="@drawable/logo_pagina_principal2"
+                    android:contentDescription="@string/strLogoBanner" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -25,7 +40,8 @@
                     android:inputType="textPersonName"
                     android:hint="@string/strRazonSocial"
                     android:ems="10"
-                    android:id="@+id/idEdTeRazonSocial" />
+                    android:id="@+id/idEdTeRazonSocial"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
@@ -40,7 +56,8 @@
                     android:hint="@string/strCalle"
                     android:ems="10"
                     android:id="@+id/idEdTeCalle"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColorHint="#cc4562" />
 
                 <EditText
                     android:layout_width="0dp"
@@ -50,7 +67,8 @@
                     android:id="@+id/idEdTeNum"
                     android:layout_weight="1"
                     android:allowUndo="false"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
@@ -64,7 +82,8 @@
                     android:inputType="textPersonName"
                     android:hint="@string/strColonia"
                     android:ems="10"
-                    android:id="@+id/idEdTeColonia" />
+                    android:id="@+id/idEdTeColonia"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
 
@@ -84,7 +103,8 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/strEstado"
                         android:id="@+id/textView8"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textColor="#cc4562" />
 
                     <Spinner
                         android:layout_width="match_parent"
@@ -105,7 +125,8 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="@string/strMunicipio"
                         android:id="@+id/textView7"
-                        android:layout_weight="1" />
+                        android:layout_weight="1"
+                        android:textColor="#cc4562" />
 
                     <Spinner
                         android:layout_width="match_parent"
@@ -129,7 +150,8 @@
                     android:hint="@string/strTelefono"
                     android:ems="10"
                     android:id="@+id/idEdTeTelofono"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
@@ -144,7 +166,8 @@
                     android:hint="@string/strCorreoElectronico"
                     android:ems="10"
                     android:id="@+id/idEdTeCorreoElectronico"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
@@ -159,7 +182,8 @@
                     android:hint="@string/strGiro"
                     android:ems="10"
                     android:id="@+id/idEdTeGiro"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColorHint="#cc4562" />
             </LinearLayout>
 
             <LinearLayout
