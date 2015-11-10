@@ -13,10 +13,10 @@ import com.maven.raxsoft.R;
 public class RegistrarMateriaPrima extends AppCompatActivity {
 
     Button btnMateriaPrima;
-    TextView btnNombreProducto;
-    TextView btnDescripcionProducto;
-    TextView btnProductoMinimo;
-    TextView btnProductoMaximo;
+    TextView NombreProducto;
+    TextView DescripcionProducto;
+    TextView ProductoMinimo;
+    TextView ProductoMaximo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +24,27 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
         setContentView(R.layout.activity_registrar_materia_prima);
 
         btnMateriaPrima = (Button) findViewById(R.id.idBtnRegistrarProducto);
-        btnNombreProducto = (TextView) findViewById(R.id.idEdTeNombreProducto);
-        btnDescripcionProducto = (TextView) findViewById(R.id.idEdTeDescripcionProducto);
-        btnProductoMinimo = (TextView) findViewById(R.id.idEdTeMinimo);
-        btnProductoMaximo = (TextView) findViewById(R.id.idEdTeMaximo);
+        NombreProducto = (TextView) findViewById(R.id.idEdTeNombreProducto);
+        DescripcionProducto = (TextView) findViewById(R.id.idEdTeDescripcionProducto);
+        ProductoMinimo = (TextView) findViewById(R.id.idEdTeMinimo);
+        ProductoMaximo = (TextView) findViewById(R.id.idEdTeMaximo);
 
         btnMateriaPrima.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Validacion en Nombre de materia primar, valida: texto vacio, caracteres ilegales
-                Validaciones.ValidarTextoVacio(btnNombreProducto.getText().toString());
-                Validaciones.ValidarCaracteres(btnNombreProducto.getText().toString());
+                Validaciones.ValidarTextoVacio(NombreProducto.getText().toString());
+                Validaciones.ValidarCaracteres(NombreProducto.getText().toString());
 //                Validacion en descripcion de materia prima, valida: texto vacio, longitud menor a 140 caracteres, caracteres ilegales
-                Validaciones.ValidarTextoVacio(btnDescripcionProducto.getText().toString());
-                Validaciones.ValidarCaracteres(btnDescripcionProducto.getText().toString());
-                Validaciones.ValidarLogitudCadena(btnDescripcionProducto.getText().toString());
+                Validaciones.ValidarTextoVacio(DescripcionProducto.getText().toString());
+                Validaciones.ValidarCaracteres(DescripcionProducto.getText().toString());
+                Validaciones.ValidarLogitudCadena(DescripcionProducto.getText().toString());
 //                Validacion en minimo en materia prima, valida: texto vacio
-                Validaciones.ValidarTextoVacio(btnProductoMinimo.getText().toString());
+                Validaciones.ValidarTextoVacio(ProductoMinimo.getText().toString());
 //                Validacion en maximo en materia prima, valida: texto vacio
-                Validaciones.ValidarTextoVacio(btnProductoMaximo.getText().toString());
+                Validaciones.ValidarTextoVacio(ProductoMaximo.getText().toString());
+
+
 
 
             }

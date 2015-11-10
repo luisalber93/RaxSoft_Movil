@@ -13,7 +13,7 @@ public class  Validaciones {
     public static boolean ValidarTextoVacio(String texto){
 
         if (!texto.isEmpty()) {
-            Log.i("Correcto", "si contiene text" + texto.toString());
+            Log.i("Correcto", "si contiene texto " + texto.toString());
             return true;
         }
         else{
@@ -40,16 +40,29 @@ public class  Validaciones {
             return true;
         }
         else{
-            Log.i("Error","Exceso de longitud" + texto.length());
+            Log.i("Error","Exceso de longitud " + texto.length());
             return false;
         }
     }
 
     public static boolean ValidarCorreoElectronico(String texto){
-        if(texto.matches("^([A-Z,a-z,0-9,-,_])+@[A-Z,a-z]+(.[A-Z,a-z])*(.[A-Z,a-z]+)")){
+        if(texto.matches("^([A-Z,a-z,0-9-_])+@[A-Z,a-z]+(.[A-Z,a-z]+)")){
+            Log.i("Correcto","el correo cumple con las especificaciones " + texto);
             return true;
         }
         else{
+            Log.i("Error", "Formato invalido " + texto);
+            return false;
+        }
+    }
+
+    public static boolean ValidarTelefono(String texto){
+        if(texto.matches("[0-9]{7,10}")){
+            Log.i("Correcto", "el numero cumple con la longitud requerida ");
+            return true;
+        }
+        else{
+            Log.i("Error","El numero telefonico no cumple con las especificaciones");
             return false;
         }
     }
