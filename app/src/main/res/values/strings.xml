@@ -11,9 +11,19 @@
     <string name="strUnidadMateriaPrima">Unidad de la Materia Prima</string>
     <string name="strExistenciaMaximaMateriaPrima">Existencia Máxima de Materia Prima</string>
     <string name="strExistenciaMinimaMateriaPrima">Existencia Mínima de Materia Prima</string>
-    <string name="strCostoProducto">Costro de Materia Prima
-    </string>
+    <string name="strCostoProducto">Costro de Materia Prima</string>
     <string name="strCostoMateriaPrima">Costo de la Materia Prima</string>
+    <string name="strProveedores">Proveedores</string>
+    <string name="strExistencias">Existencias</string>
+    <string name="strExistenciaMinima">Existencia Mínima</string>
+    <string name="strExistenciaMaxima">Existencia Máxima</string>
+
+
+
+
+
+
+
 
     <string name="strRazonSocial">Razon Social</string>
     <string name="strCalle">Calle</string>
@@ -23,27 +33,9 @@
     <string name="strTelefono">Teléfono</string>
     <string name="strCorreoElectronico">Correo Electrónico</string>
     <string name="strGiro">Giro</string>
-    <string name="strUnidad">Unidad de la Materia Prima:</string>
-    <string name="strProveedores">Proveedores:</string>
-    <string name="strNumeroCalle">Número</string>
-
-    <string name="strExistencias">Existencias:</string>
-    <string name="strExistenciaMinima">Min:</string>
-    <string name="strExistenciaMaxima">Máx:</string>
 
     <!-- String Spinner-->
-    <string-array name="strSpinnerUnidades">
-        <item>Pieza</item>
-        <item>Paquete</item>
-    </string-array>
-
-    <string-array name="strSpinnerEstados">
-        <item>Querétaro</item>
-        <item>Estádo de México</item>
-    </string-array>
-
-    <string-array name="strSpineerMunicipiosQueretaro"></string-array>
-    <string-array name="strSpineerMunicipiosEdoMexico"></string-array>
+    <string name="strSpinnerProveedores">Proveedores</string>
 
     <!-- String Botones-->
     <string name="strBtnIngresar">Ingresar</string>
@@ -87,10 +79,22 @@
         <item>Salir</item>
     </string-array>
 
+
+
+
+
     <!-- Drawer String-->
     <string name="openDrawer">Abriendo Drawer</string>
     <string name="closeDrawer">Cerradon Drawer</string>
     <string name="title_activity_pantalla_principal">PantallaPrincipal</string>
+
+
+    <!--Unidades-->
+    <string-array name="strSpinnerUnidades">
+        <item>Gramos</item>
+        <item>Litros</item>
+    </string-array>
+
 
 
 </resources>
