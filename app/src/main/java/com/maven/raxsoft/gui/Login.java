@@ -94,6 +94,7 @@ public class Login extends ActionBarActivity {
             //Se crea un bundle para enviar el role.
             Bundle bundle = new Bundle();
             bundle.putString("role",result.getMensaje());
+            bundle.putString("username",inpUsurio.getText().toString());
             //Se crea el Intent para lanzar el activity.
             Intent principalIntent = new Intent(Login.this,PantallaPrincipal.class);
             principalIntent.putExtras(bundle);

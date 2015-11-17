@@ -1,8 +1,12 @@
 package com.maven.raxsoft.gui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Visibility;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,10 +18,13 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maven.raxsoft.R;
 import com.maven.raxsoft.database.HistorialDAO;
 import com.maven.raxsoft.database.MateriaPrimaDAO;
+import com.maven.raxsoft.database.MovimientoDAO;
+import com.maven.raxsoft.models.ErrorDB;
 import com.maven.raxsoft.models.MateriaPrima;
 import com.maven.raxsoft.models.Proveedor;
 
@@ -38,6 +45,9 @@ public class Movimiento extends AppCompatActivity {
 
     //Variable que controla el id de la materia para la que se realizará el movimiento.
     private int idMateria;
+
+    //Variable que almacena el username de quien registra el movimiento.
+    private String username;
 
     //Variables que controla las existencias actuales, minimas y máximas de una materia prima.
     private int actuales;
@@ -69,8 +79,10 @@ public class Movimiento extends AppCompatActivity {
         //Evento del checkBox.
         toggleAjuste();
 
+        //Se agregan eventos al botón:
+        buttonEvents();
 
-        btnActualizar.setVisibility(View.GONE);
+
 
     }
 
@@ -87,6 +99,7 @@ public class Movimiento extends AppCompatActivity {
 
     private void fillComponents(){
         idMateria = getIntent().getExtras().getInt("id");
+        username =  getIntent().getExtras().getString("username");
         //Se crea el DAO para consultar.
         MateriaPrimaDAO materiaDAO = new MateriaPrimaDAO(this);
         //Se realiza la consulta.
@@ -144,7 +157,8 @@ public class Movimiento extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-                if(movimientoTipo!=HistorialDAO.MOV_AJUSTE){
+                //Si la casilla de ajuste no está marcada.
+                if (!ckAjuste.isChecked()) {
                     if (newVal > actuales) {
                         //Se actualiza la GUI y las variables para soportar el movimiento de entrada.
                         updateToEntrada();
@@ -158,6 +172,9 @@ public class Movimiento extends AppCompatActivity {
 
                         }
                     }
+                } else {
+                    //Si la casilla está marcada: Se valida que el nuevo valor sea diferente que el de existencias actuales para marcar el movimiento ocmo ajuste.
+                    movimientoTipo = (newVal != actuales) ? HistorialDAO.MOV_AJUSTE : -1;
                 }
 
 
@@ -185,15 +202,15 @@ public class Movimiento extends AppCompatActivity {
         ckAjuste.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
+                if (isChecked) {
                     //Implica que es un ajuste de inventario, se actualiza la GUI para ello.
                     toggleProveedorVisibility(false);
-                    movimientoTipo = HistorialDAO.MOV_AJUSTE;
+                    movimientoTipo = -1;
                     npCantidad.setMinValue(0);
                     npCantidad.setMaxValue(500);
                     npCantidad.setValue(actuales);
 
-                }else{
+                } else {
                     //Se desactivo el ajuste de inventario.
                     toggleProveedorVisibility(false);
                     movimientoTipo = -1;
@@ -203,6 +220,121 @@ public class Movimiento extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void buttonEvents(){
+
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //la operación a realizar varía en función del tipo de movimiento que esté activo:
+                switch (movimientoTipo) {
+                    case -1:
+                        //No se ha realizado ningún movimiento. Se presenta un Toast con el mensaje correspondiente:
+                        Toast.makeText(getBaseContext(), "Las existencias no han sido modificadas. No se registrará ningún movimiento", Toast.LENGTH_SHORT).show();
+                        break;
+                    case HistorialDAO.MOV_SALIDA:
+                        registerSalida();
+                        //Se invoca el método para registrar el movimiento de salida.
+                        break;
+                    case HistorialDAO.MOV_ENTRADA:
+                        registerEntrada();
+                        //Se invoca al método para registrar el movimiento de entrada.
+                        break;
+                    case HistorialDAO.MOV_AJUSTE:
+                        registerAjuste();
+                        //Se invoca al método para registrar el movimiento de ajuste.
+                        break;
+                }
+            }
+        });
+
+    }
+
+
+    private void registerSalida(){
+        //Se genera un diálogo de Confirmación.
+        new AlertDialog.Builder(Movimiento.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Confirmar")
+                .setMessage("La salida se registrará con el usuario: "+username+"\n¿Desea Continuar?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Se registra la salida de mercancia con el DAO de movimiento.
+                        updateExistencias(HistorialDAO.MOV_SALIDA);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void registerEntrada(){
+        //Se genera un diálogo de Confirmación.
+        new AlertDialog.Builder(Movimiento.this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Confirmar")
+                .setMessage("La entrada se registrará con el usuario: "+username+"\n¿Desea Continuar?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Se registra la salida de mercancia con el DAO de movimiento.
+                        updateExistencias(HistorialDAO.MOV_ENTRADA);
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
+
+    }
+
+    private void registerAjuste(){
+        //Se instancia el Dialogo de confirmación.
+        AuthorizationDialog autorizacion = new AuthorizationDialog();
+        //Se setean los valores adecuados.
+        autorizacion.setMateriaID(idMateria);
+        autorizacion.setNvaCantidad(npCantidad.getValue());
+        autorizacion.setContext(this);
+        //Se muestra el dialog.
+        autorizacion.show(getFragmentManager(),"Autorización");
+
+
+
+    }
+
+    private void updateExistencias(int tipoMov){
+        //Se crea el DAO para la operación.
+        MovimientoDAO movDAO = new MovimientoDAO(this);
+        //Se obtiene el número seleccionado del numberPicker.
+        int nvasExistencias = npCantidad.getValue();
+        int cantidadModificada = 0;
+        //Se prepara la variable que almacenará el id del prooveedor.
+        int provId = 0;
+        //Se prepara la variable que almacenará el costo.
+        double costo = 0;
+        switch(tipoMov){
+            case HistorialDAO.MOV_SALIDA:
+                //Se calcula la cantidad modificada restando de las existencias actuales la nueva cantidad.
+                cantidadModificada = actuales-nvasExistencias;
+                break;
+            case HistorialDAO.MOV_ENTRADA:
+                //Se calcula la cantidad modificada restando de las nuevas existencias las actuales.
+                cantidadModificada = nvasExistencias-actuales;
+                //Se obtiene el id del proveedorSeleccionado.
+                int selectedIndex = spProveedor.getSelectedItemPosition();
+                provId = proveedores.get(selectedIndex).getId();
+                //Se obtiene el costo registrado para la entrada.
+                costo = Double.parseDouble(txtCosto.getText().toString());
+                break;
+
+
+        }
+
+        //Se realiza la operación en la BD.
+        ErrorDB result = movDAO.updateExistencias(idMateria,nvasExistencias,cantidadModificada,tipoMov,provId,costo,username);
+        Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
+        if(result.isSuccess()){
+            finish();
+        }
     }
 
 

@@ -48,6 +48,10 @@
             android:name=".gui.Existencias"
             android:label="@string/title_activity_existencias" >
         </activity>
+        <activity
+            android:name=".gui.DisplayHistorial"
+            android:label="@string/title_activity_display_historial" >
+        </activity>
     </application>
 
 </manifest>

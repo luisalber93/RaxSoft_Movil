@@ -61,6 +61,8 @@ public class Existencias extends AppCompatActivity {
                 //SE crea un bundle para lanzar el Intent
                 Bundle extras = new Bundle();
                 extras.putInt("id",materia.getId());
+                //Se coloca el nombre de usuario.
+                extras.putString("username",getIntent().getExtras().getString("username"));
                 //SE crea el Intent
                 Intent movimientoIntent = new Intent(Existencias.this,Movimiento.class);
                 movimientoIntent.putExtras(extras);

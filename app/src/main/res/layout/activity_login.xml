@@ -34,7 +34,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentStart="false"
-                        android:contentDescription="logo RaxSoft" />
+                        android:contentDescription="@string/strContentLogin" />
                 </RelativeLayout>
             </LinearLayout>
 

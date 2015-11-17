@@ -1,17 +1,15 @@
 package com.maven.raxsoft.gui;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.maven.raxsoft.R;
 
@@ -65,6 +63,7 @@ public class Reportes extends AppCompatActivity {
 
             DatePicker datePicker = endDateDialog.getDatePicker();
             String fecha = fetchDateForDB(iniDay,iniMonth,iniYear);
+            datePicker.setMinDate(0);
             datePicker.setMinDate(parseDateFromString(fecha));
 
 
@@ -86,8 +85,12 @@ public class Reportes extends AppCompatActivity {
             fechaFinal.setText(fetchDateForUI(endDay,endMonth,endYear));
 
 
+
+
             DatePicker datePicker = iniDateDialog.getDatePicker();
+            String dummy = fetchDateForDB(31,12,2100);
             String fecha = fetchDateForDB(endDay,endMonth,endYear);
+            datePicker.setMaxDate(parseDateFromString(dummy));
             datePicker.setMaxDate(parseDateFromString(fecha));
         }
     };
@@ -108,7 +111,7 @@ public class Reportes extends AppCompatActivity {
         //Evento del botón para realizar la consulta.
         buttonEvent();
 
-        btnConsultar.setVisibility(View.GONE);
+
     }
 
 //    @Override
@@ -168,16 +171,24 @@ public class Reportes extends AppCompatActivity {
         btnConsultar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Se obtiene la posición seleccionada del spinner.
-                int selectedPos=spTipoReporte.getSelectedItemPosition();
-                switch(selectedPos){
-                    case 0:
-                        Toast.makeText(getBaseContext(),spTipoReporte.getSelectedItem().toString()+"0",Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        Toast.makeText(getBaseContext(),spTipoReporte.getSelectedItem().toString()+"1",Toast.LENGTH_SHORT).show();
-                        break;
-                }
+                //Se obtienen las fechas de inicio y fin para ser enviadas a la BD.
+                String fechaInicio = fetchDateForDB(iniDay,iniMonth,iniYear);
+                String fechaFin = fetchDateForDB(endDay,endMonth,endYear);
+                //Se determina el tipo de período.
+                int tipoReporte = spTipoReporte.getSelectedItemPosition()+1;
+                //Se crea el bundle para colocar los datos.
+                Bundle extras = new Bundle();
+                extras.putInt("tipoReporte",tipoReporte);
+                extras.putString("fechaInicio", fechaInicio);
+                extras.putString("fechaFin",fechaFin);
+
+                //Se crea el Intent para llamar el Activity.
+                Intent displayReporte = new Intent(Reportes.this, DisplayHistorial.class);
+                displayReporte.putExtras(extras);
+                startActivity(displayReporte);
+
+
+
             }
         });
     }
@@ -186,7 +197,7 @@ public class Reportes extends AppCompatActivity {
         //Se inicia la fecha con la fecha actual
         Calendar cal = Calendar.getInstance();
         int currYear = cal.get(Calendar.YEAR);
-        int currMonth = cal.get(Calendar.MONTH);
+        int currMonth = cal.get(Calendar.MONTH)+1;
         int currDay = cal.get(Calendar.DAY_OF_MONTH);
 
         iniDay = currDay;
@@ -203,8 +214,26 @@ public class Reportes extends AppCompatActivity {
         fechaFinal.setText(fetchDateForUI(endDay, endMonth, endYear));
 
         //Se crean los dialogs.
-        iniDateDialog = new DatePickerDialog(this,iniDateListener,iniYear,iniMonth,iniDay);
-        endDateDialog = new DatePickerDialog(this,endDateListener,endYear,endMonth,endDay);
+        --currMonth;
+        iniDateDialog = new DatePickerDialog(this,iniDateListener,iniYear,currMonth,iniDay);
+        endDateDialog = new DatePickerDialog(this,endDateListener,endYear,currMonth,endDay);
+
+        //Se ajustan los minDate y maxDate para evitar inconsistencias en la consulta.
+        //Se empieza con el dialogo de fecha inicial.
+
+        DatePicker datePicker = iniDateDialog.getDatePicker();
+        String dummy = fetchDateForDB(31,12,2100);
+        String fecha = fetchDateForDB(endDay,endMonth,endYear);
+        datePicker.setMaxDate(parseDateFromString(dummy));
+        datePicker.setMaxDate(parseDateFromString(fecha));
+
+        //Se continua con la fecha final.
+        datePicker = endDateDialog.getDatePicker();
+        fecha = fetchDateForDB(iniDay, iniMonth, iniYear);
+        datePicker.setMinDate(0);
+        datePicker.setMinDate(parseDateFromString(fecha));
+
+
      }
 
     private void initSpinner(){

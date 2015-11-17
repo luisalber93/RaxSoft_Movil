@@ -32,14 +32,14 @@ public class HistorialDAO extends GenericDAO {
      * Método que registra una salida en el historial en el Inventario.
      */
 
-    public boolean registrarSalida(int materiaID, int cantidadModificada) {
+    public boolean registrarSalida(int materiaID, int cantidadModificada,String user) {
         //Se genera el contentValues para el la inserción en historial.
         ContentValues values = new ContentValues();
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_ID_MATERIA, materiaID);
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_CANTIDAD, cantidadModificada);
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_FECHA, getCurrentTime());
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV, MOV_SALIDA);
-        //values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
 
         //Se realiza la inserción:
         abrir();
@@ -53,14 +53,14 @@ public class HistorialDAO extends GenericDAO {
      * Método que registra una entrada en el almacén.
      */
 
-    public boolean registraEntrada(int materiaID, int cantidadModificada, int proveedorID, double costo) {
+    public boolean registraEntrada(int materiaID, int cantidadModificada, int proveedorID, double costo,String user) {
         //Se genera el contentValues para el la inserción en historial.
         ContentValues values = new ContentValues();
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_ID_MATERIA, materiaID);
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_CANTIDAD, cantidadModificada);
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_FECHA, getCurrentTime());
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV, MOV_ENTRADA);
-        //values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
 
         //Se realiza la inserción:
         abrir();
@@ -90,7 +90,7 @@ public class HistorialDAO extends GenericDAO {
      * Método que registra un ajuste al inventario.
      */
 
-    public boolean registrarAjuste(int materiaID, int nvaExistencia) {
+    public boolean registrarAjuste(int materiaID, int nvaExistencia,String user) {
 
         //Se genera el ContentValues para la inserción.
         ContentValues values = new ContentValues();
@@ -98,7 +98,7 @@ public class HistorialDAO extends GenericDAO {
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_CANTIDAD, nvaExistencia);
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_FECHA, getCurrentTime());
         values.put(InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV, MOV_AJUSTE);
-        //values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
+        values.put(InventariosContract.HistorialTable.COLUMN_NAME_USUARIO,user);
 
         //Se realiza la inserción.
         abrir();
@@ -112,20 +112,29 @@ public class HistorialDAO extends GenericDAO {
      * Método que retorna todos los movimientos efectuados entre dos intervalos de tiempo.
      */
 
-    public List<Movimiento> fetchMovimientos(String fechaInicio, String fechaFin) {
+    public List<Movimiento> fetchMovimientos(String fechaInicio, String fechaFin, boolean historial) {
 
 
         List<Movimiento> movimientos;
         Cursor cursor = null;
 
-        String whereClause = InventariosContract.HistorialTable.COLUMN_NAME_FECHA + " BETWEEN ? AND ?";
-        String[] whereArgs = new String[]{fechaInicio + " 00:00", fechaFin + " 23:59"};
+        String whereClause = InventariosContract.HistorialTable.COLUMN_NAME_FECHA+" BETWEEN  ? AND ?";
+        String [] whereArgs;
+
+        if(!historial){
+            whereClause+= " AND "+InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV +" = ?";
+            whereArgs = new String[]{fechaInicio+" 00:00", fechaFin+" 23:59",Integer.toString(MOV_ENTRADA)};
+        }else{
+            whereArgs = new String[]{fechaInicio+" 00:00", fechaFin+" 23:59"};
+        }
+
+
         String[] columns = new String[]{InventariosContract.HistorialTable._ID,
                 InventariosContract.HistorialTable.COLUMN_NAME_ID_MATERIA,
                 InventariosContract.HistorialTable.COLUMN_NAME_CANTIDAD,
                 InventariosContract.HistorialTable.COLUMN_NAME_FECHA,
-                InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV};
-        //,InventariosContract.HistorialTable.COLUMN_NAME_USUARIO};
+                InventariosContract.HistorialTable.COLUMN_NAME_TIPO_MOV,
+                InventariosContract.HistorialTable.COLUMN_NAME_USUARIO};
 
         //Se realiza la consulta
         abrir();
@@ -155,11 +164,14 @@ public class HistorialDAO extends GenericDAO {
             do {
                 Movimiento movimiento = new Movimiento();
                 movimiento.setId(cursor.getInt(0));
+                //Se pone una materia temporal para poder llevar el registro del id.
+                MateriaPrima materiaTemp = new MateriaPrima();
+                movimiento.setMateria(materiaTemp);
                 movimiento.getMateria().setId(cursor.getInt(1));
                 movimiento.setCantidad(cursor.getInt(2));
                 movimiento.setFecha(cursor.getString(3));
                 movimiento.setTipoMov(cursor.getInt(4));
-                //movimiento.setUsuario(cursor.getString(5));
+                movimiento.setUsuario(cursor.getString(5));
                 movimientos.add(movimiento);
             } while (cursor.moveToNext());
         }
@@ -231,7 +243,7 @@ public class HistorialDAO extends GenericDAO {
      * formateada para ser almacenada en la base de datos SQLite.
      */
 
-    private String getCurrentTime() {
+    private  String getCurrentTime() {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         return format.format(calendar.getTime());

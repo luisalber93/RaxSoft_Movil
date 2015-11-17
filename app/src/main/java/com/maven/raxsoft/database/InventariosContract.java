@@ -164,11 +164,11 @@ public class InventariosContract {
                 COLUMN_NAME_CANTIDAD+INTEGER_TYPE+NOT_NULL_DEF+COMMA_SEPARATOR+
                 COLUMN_NAME_FECHA+TEXT_TYPE+NOT_NULL_DEF+COMMA_SEPARATOR+
                 COLUMN_NAME_TIPO_MOV+INTEGER_TYPE+NOT_NULL_DEF+" CHECK ("+COLUMN_NAME_TIPO_MOV+" = 1 OR "+COLUMN_NAME_TIPO_MOV+ " = 2  OR "+COLUMN_NAME_TIPO_MOV+" = 3)"+COMMA_SEPARATOR+ //El tipo de movimiento 1 es Entrada, el 2 es salida, el 3 es Ajuste.
-                COLUMN_NAME_USUARIO+INTEGER_TYPE+COMMA_SEPARATOR+
+                COLUMN_NAME_USUARIO+TEXT_TYPE+COMMA_SEPARATOR+
                 "FOREIGN KEY ("+COLUMN_NAME_ID_MATERIA+") REFERENCES "+MateriaPrimaTable.TABLE_NAME+"("+MateriaPrimaTable._ID+")"+COMMA_SEPARATOR+
-                "FOREIGN KEY ("+COLUMN_NAME_USUARIO+") REFERENCES "+UsuarioTable.TABLE_NAME+"("+UsuarioTable._ID+"))";
+                "FOREIGN KEY ("+COLUMN_NAME_USUARIO+") REFERENCES "+UsuarioTable.TABLE_NAME+"("+UsuarioTable.COLUMN_NAME_USUARIO+"))";
 
-        ;
+
 
         public static final String DROP_TABLE= "DROP TABLE IF EXISTS "+TABLE_NAME;
     }

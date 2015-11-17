@@ -85,8 +85,25 @@ public class UsuarioDAO extends GenericDAO {
         if(numRegistros>1){ //Si existe más de un registro, entones se nulifica el objeto para negar el acceso.
             usuario = null;
         }
+        cerrar();
 
         return usuario;
+
+    }
+
+    /**
+     * Método que determina si un usuario tiene el rol de administador o no.
+     */
+
+    public boolean isUserAdmin(String user, String passwd){
+        boolean retorno = false;
+        Usuario usuario = fetchUserData(user,passwd);
+
+        if(usuario!=null){
+            retorno = (usuario.getRoleAcceso().equals("admin"));
+        }
+
+        return retorno;
 
     }
 

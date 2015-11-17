@@ -13,18 +13,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.maven.raxsoft.R;
+import com.maven.raxsoft.database.HistorialDAO;
 
 public class PantallaPrincipal extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
-    ListView drawerContent;
-    String[] menuPaginaPrincipal;
-    private ActionBarDrawerToggle drawerListener;
-
+    private DrawerLayout drawerLayout;
+    private ListView drawerContent;
+    private String[] menuPaginaPrincipal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +89,11 @@ public class PantallaPrincipal extends AppCompatActivity {
                         startActivity(opcionReportes);
                         break;
                     case "Movimientos":
+                        //Se crea el bundle para enviar el nombre de usuario.
+                        Bundle extras = new Bundle();
+                        extras.putString("username",getIntent().getExtras().getString("username"));
                         Intent opcionMovimientos = new Intent(PantallaPrincipal.this,Existencias.class);
+                        opcionMovimientos.putExtras(extras);
                         startActivity(opcionMovimientos);
                         break;
                     case "Salir":

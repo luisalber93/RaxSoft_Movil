@@ -140,6 +140,15 @@
     <string name="strLogoBanner">Logo Banner</string>
     <string name="title_activity_reportes">Reportes</string>
     <string name="title_activity_existencias">Existencias</string>
+    <string name="strContentLogin">logo RaxSoft</string>
+    <string name="strFecha">Fecha:</string>
+    <string name="strCantidad">Cantidad:</string>
+    <string name="strRealizo">Realizó:</string>
+    <string name="strMovimientoProveedor">Proveedor:</string>
+    <string name="strmovimientoDetailCosto">Costo:</string>
+    <string name="title_activity_display_historial">Historial</string>
+    <string name="strGastoTotal">Gasto Total:</string>
+    <string name="strFechaHora">Fecha y Hora:</string>
 
 
 </resources>
