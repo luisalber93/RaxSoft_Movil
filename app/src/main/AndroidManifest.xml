@@ -52,6 +52,11 @@
             android:name=".gui.DisplayHistorial"
             android:label="@string/title_activity_display_historial" >
         </activity>
+        <activity
+            android:name=".gui.About"
+            android:label="@string/title_activity_about"
+            android:theme="@style/Theme.AppCompat.Light.Dialog">
+        </activity>
     </application>
 
 </manifest>

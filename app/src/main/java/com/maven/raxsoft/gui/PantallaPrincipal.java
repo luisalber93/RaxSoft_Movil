@@ -96,6 +96,11 @@ public class PantallaPrincipal extends AppCompatActivity {
                         opcionMovimientos.putExtras(extras);
                         startActivity(opcionMovimientos);
                         break;
+                    case "Acerca De":
+                        //Se crea el Intent para el activity de acerca de.
+                        Intent aboutIntent = new Intent(PantallaPrincipal.this,About.class);
+                        startActivity(aboutIntent);
+                        break;
                     case "Salir":
                         //Se finalizan todos los Activities.
                         Toast.makeText(getBaseContext(),"¡Hasta Luego!",Toast.LENGTH_SHORT).show();
