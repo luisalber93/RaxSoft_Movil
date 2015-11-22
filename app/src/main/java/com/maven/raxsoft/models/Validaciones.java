@@ -41,11 +41,9 @@ public class Validaciones {
     }
 
     public static boolean validarCorreoElectronico(String texto) {
-        if (texto.matches("^([A-Z,a-z,0-9-_])+@[A-Z,a-z]+(.[A-Z,a-z]+)")) {
-
+        if (texto.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")) {
             return true;
         } else {
-
             return false;
         }
     }

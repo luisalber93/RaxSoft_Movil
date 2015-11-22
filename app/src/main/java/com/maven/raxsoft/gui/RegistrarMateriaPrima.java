@@ -158,9 +158,10 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
             mensajesValidaciones.put(2,"Las existencias mínimas no pueden estar vacías.");
             mensajesValidaciones.put(3,"Las existencias máximas no pueden estar vacías.");
             mensajesValidaciones.put(4,"Las existencias mínimas deben ser menores a las existencias máximas.");
+            mensajesValidaciones.put(5,"Las existencias mínimas deben ser menores a 30 y las existencias máximas deben ser mayores a 30.");
 
             //Se inicializa el validationControl
-            validationControl = new boolean[5];
+            validationControl = new boolean[6];
 
         }
 
@@ -403,7 +404,26 @@ public class RegistrarMateriaPrima extends AppCompatActivity {
         validationControl[3] = Validaciones.validarTextoVacio(cadenaMaximas);
 
         //Validar existenciasMin<existenciasMax.
-        validationControl[4] = (Integer.parseInt(cadenaMinimas)<Integer.parseInt(cadenaMaximas));
+        boolean validExistences = false;
+        try{
+            int minimas = Integer.parseInt(cadenaMinimas);
+            int maximas = Integer.parseInt(cadenaMaximas);
+            validExistences = (minimas<maximas);
+        }catch(NumberFormatException ex){
+            validExistences = false;
+        }
+        validationControl[4] =  validExistences;
+
+        //Validar existenciasMin<existenciasMax.
+        validExistences = false;
+        try{
+            int minimas = Integer.parseInt(cadenaMinimas);
+            int maximas = Integer.parseInt(cadenaMaximas);
+            validExistences = (minimas<30)&&(maximas>30);
+        }catch(NumberFormatException ex){
+            validExistences = false;
+        }
+        validationControl[5]=validExistences;
 
         //Se crea la variable de retorno.
         boolean valid = true;

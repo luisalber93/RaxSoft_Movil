@@ -55,7 +55,8 @@ public class InventariosContract {
                 COLUMN_NAME_TELEFONO+TEXT_TYPE+COMMA_SEPARATOR+
                 COLUMN_NAME_GIRO+TEXT_TYPE+COMMA_SEPARATOR+
                 COLUMN_NAME_EMAIL+TEXT_TYPE+NOT_NULL_DEF+UNIQUE_DEF+COMMA_SEPARATOR+
-                COLUMN_NAME_USO+INTEGER_TYPE+"CHECK ("+COLUMN_NAME_USO+" = 0 OR "+COLUMN_NAME_USO+ " = 1 ))"; //La columna uso es para implementar un borrado lógico. El 0 indica borrado. El 1 no borrado.
+                COLUMN_NAME_USO+INTEGER_TYPE+"CHECK ("+COLUMN_NAME_USO+" = 0 OR "+COLUMN_NAME_USO+ " = 1 ), "+ //La columna uso es para implementar un borrado lógico. El 0 indica borrado. El 1 no borrado.
+                "UNIQUE("+COLUMN_NAME_NOMBRE+","+COLUMN_NAME_ESTADO+") ON CONFLICT ABORT)";
 
         public static final String DROP_TABLE= "DROP TABLE IF EXISTS "+TABLE_NAME;
 
@@ -81,7 +82,8 @@ public class InventariosContract {
                 COLUMN_NAME_FECHA_CREACION+TEXT_TYPE+COMMA_SEPARATOR+
                 COLUMN_NAME_EXISTENCIAS_MINIMAS+INTEGER_TYPE+"CHECK ("+COLUMN_NAME_EXISTENCIAS_MINIMAS+">0)"+COMMA_SEPARATOR+
                 COLUMN_NAME_EXISTENCIAS_MAXIMAS+INTEGER_TYPE+COMMA_SEPARATOR+
-                COLUMN_NAME_USO+INTEGER_TYPE+"CHECK ("+COLUMN_NAME_USO+" = 0 OR "+COLUMN_NAME_USO+ " = 1 ))"; //La columna uso es para implementar un borrado lógico. El 0 indica borrado. El 1 no borrado.
+                COLUMN_NAME_USO+INTEGER_TYPE+"CHECK ("+COLUMN_NAME_USO+" = 0 OR "+COLUMN_NAME_USO+ " = 1 ), "+ //La columna uso es para implementar un borrado lógico. El 0 indica borrado. El 1 no borrado.
+                "UNIQUE("+COLUMN_NAME_NOMBRE+","+COLUMN_NAME_DESCRIPCION+") ON CONFLICT ABORT)";
 
 
         public static final String DROP_TABLE= "DROP TABLE IF EXISTS "+TABLE_NAME;

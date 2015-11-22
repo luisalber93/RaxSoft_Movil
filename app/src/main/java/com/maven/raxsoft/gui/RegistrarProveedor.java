@@ -137,7 +137,7 @@ public class RegistrarProveedor extends AppCompatActivity {
         mensajesValidacion.put(1,"La calle no puede estar vacía ni contener caracteres especiales.");
         mensajesValidacion.put(2,"El número no puede ir vacío.");
         mensajesValidacion.put(3,"La colonia no puede estar vacía ni contener caracteres especiales.");
-        mensajesValidacion.put(4,"El teléfono debe tener una longitud de entre 7 y 10 caracteres.");
+        mensajesValidacion.put(4,"El teléfono debe tener una longitud de entre 7 y 10 dígitos.");
         mensajesValidacion.put(5,"El correo debe seguir el formato: algo@server.com");
         mensajesValidacion.put(6,"El giro no debe contener caracteres especiales y debe ser menor a 140 caracteres.");
 

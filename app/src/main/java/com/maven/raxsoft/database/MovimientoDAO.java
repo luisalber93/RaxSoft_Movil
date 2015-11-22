@@ -67,7 +67,7 @@ public class MovimientoDAO extends GenericDAO {
         }
 
 
-        mensaje+="Para materia prima: "+materiaID;
+
         Log.i(SQLiteHelper.LOG_TAG,mensaje);
 
         return  new ErrorDB(success&&historyEntrySuccess,mensaje);

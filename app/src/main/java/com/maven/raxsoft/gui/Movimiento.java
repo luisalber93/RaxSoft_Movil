@@ -206,8 +206,8 @@ public class Movimiento extends AppCompatActivity {
                     //Implica que es un ajuste de inventario, se actualiza la GUI para ello.
                     toggleProveedorVisibility(false);
                     movimientoTipo = -1;
-                    npCantidad.setMinValue(0);
-                    npCantidad.setMaxValue(500);
+                    npCantidad.setMinValue(minimas);
+                    npCantidad.setMaxValue(maximas);
                     npCantidad.setValue(actuales);
 
                 } else {
@@ -311,10 +311,13 @@ public class Movimiento extends AppCompatActivity {
         int provId = 0;
         //Se prepara la variable que almacenará el costo.
         double costo = 0;
+        //Variable booleana para autorizar la operación.
+        boolean proceeed = false;
         switch(tipoMov){
             case HistorialDAO.MOV_SALIDA:
                 //Se calcula la cantidad modificada restando de las existencias actuales la nueva cantidad.
                 cantidadModificada = actuales-nvasExistencias;
+                proceeed = true;
                 break;
             case HistorialDAO.MOV_ENTRADA:
                 //Se calcula la cantidad modificada restando de las nuevas existencias las actuales.
@@ -323,18 +326,30 @@ public class Movimiento extends AppCompatActivity {
                 int selectedIndex = spProveedor.getSelectedItemPosition();
                 provId = proveedores.get(selectedIndex).getId();
                 //Se obtiene el costo registrado para la entrada.
-                costo = Double.parseDouble(txtCosto.getText().toString());
+                try{
+                    costo = Double.parseDouble(txtCosto.getText().toString());
+                    proceeed = true;
+                }catch(NumberFormatException ex){
+                    proceeed = false;
+                }
+
                 break;
 
 
         }
 
-        //Se realiza la operación en la BD.
-        ErrorDB result = movDAO.updateExistencias(idMateria,nvasExistencias,cantidadModificada,tipoMov,provId,costo,username);
-        Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
-        if(result.isSuccess()){
-            finish();
+        if(proceeed){
+            //Se realiza la operación en la BD.
+            ErrorDB result = movDAO.updateExistencias(idMateria,nvasExistencias,cantidadModificada,tipoMov,provId,costo,username);
+            Toast.makeText(getBaseContext(),result.getMensaje(),Toast.LENGTH_SHORT).show();
+            if(result.isSuccess()){
+                finish();
+            }
+
+        }else{
+            Toast.makeText(getBaseContext(),"Por favor verifique que el costo sea un número decimal como: 200.50, 190.00 ó 175",Toast.LENGTH_SHORT).show();
         }
+
     }
 
 

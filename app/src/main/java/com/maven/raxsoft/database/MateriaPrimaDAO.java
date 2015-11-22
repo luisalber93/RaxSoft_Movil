@@ -50,7 +50,7 @@ public class MateriaPrimaDAO extends GenericDAO {
 
         }
 
-        String mensaje = (success) ? "Materia Prima registrada con éxito." : "Ocurrió un error al registrar la materia prima. Por favor inténtelo de nuevo.";
+        String mensaje = (success) ? "Materia Prima registrada con éxito." : "Una materia prima con este nombre y descripción ya existe. Imposible registrar.";
         //Se registra el resultado.
         Log.i(SQLiteHelper.LOG_TAG, mensaje);
         return new ErrorDB(success, mensaje);
@@ -149,7 +149,7 @@ public class MateriaPrimaDAO extends GenericDAO {
 
         //Se abre la base de datos para realizar la consulta.
         abrir();
-        cursor = database.query(InventariosContract.MateriaPrimaTable.TABLE_NAME, columns, whereClause, whereArgs, null, null, null);
+        cursor = database.query(InventariosContract.MateriaPrimaTable.TABLE_NAME, columns, whereClause, whereArgs, null, null, InventariosContract.MateriaPrimaTable.COLUMN_NAME_NOMBRE);
         materias = formatMateriaPrimaCursor(cursor);
         //Se cierra la base de datos.
         cerrar();

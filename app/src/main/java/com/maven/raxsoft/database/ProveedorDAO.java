@@ -35,7 +35,7 @@ public class ProveedorDAO extends GenericDAO {
         boolean success = (database.insert(InventariosContract.ProveedorTable.TABLE_NAME,null,values)!=-1);
         //Se cierra la base de datos.
         cerrar();
-        String mensaje = (success)?"Proveedor registrado exitosamente":"Ocurrió un error al insertar el nuevo proveedor. Por favor inténtelo de nuevo.";
+        String mensaje = (success)?"Proveedor registrado exitosamente":"Un proveedor con estas características ya existe. Imposible regisrar.";
         //Se registra el resultado.
         Log.i(SQLiteHelper.LOG_TAG,mensaje);
         return new ErrorDB(success,mensaje);
@@ -126,7 +126,7 @@ public class ProveedorDAO extends GenericDAO {
         //Se abre la base de datos.
         abrir();
         //Se realiza la consulta.
-        cursor = database.query(InventariosContract.ProveedorTable.TABLE_NAME,columns,whereClause,whereArgs,null,null,null);
+        cursor = database.query(InventariosContract.ProveedorTable.TABLE_NAME,columns,whereClause,whereArgs,null,null,InventariosContract.ProveedorTable.COLUMN_NAME_NOMBRE);
         proveedores = formatProveedorCursor(cursor);
         //Se cierra la base de datos.
         cerrar();
