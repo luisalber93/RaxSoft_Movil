@@ -61,6 +61,9 @@ public class Movimiento extends AppCompatActivity {
 
     private int movimientoTipo;
 
+    //Variable que controla si las entradas están permitidas.
+    private boolean entriesEnabled;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +126,7 @@ public class Movimiento extends AppCompatActivity {
     private void setUpNumberPickerMovement(){
 
         npCantidad.setMinValue(minimas);
-        npCantidad.setMaxValue(maximas);
+        npCantidad.setMaxValue((entriesEnabled)?maximas:actuales);
         npCantidad.setValue(actuales);
         npCantidad.setWrapSelectorWheel(false);
 
@@ -131,16 +134,24 @@ public class Movimiento extends AppCompatActivity {
 
     private void fillSpinner(){
 
-        String [] proveedoresNombres = new String[proveedores.size()];
-        int index=0;
-        for (Proveedor proveedor:proveedores) {
-            proveedoresNombres[index] = proveedor.getNombre();
-            index++;
+        if(proveedores.get(0).getUso() != 0){
+            String [] proveedoresNombres = new String[proveedores.size()];
+            int index=0;
+            for (Proveedor proveedor:proveedores) {
+                proveedoresNombres[index] = proveedor.getNombre();
+                index++;
+            }
+
+            //Se crea el adapter para el spinner.
+            ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,proveedoresNombres);
+            spProveedor.setAdapter(adapter);
+            entriesEnabled = true;
+        }else{
+            Toast.makeText(getBaseContext(),"El proveedor de esta materia prima está deshabilitado.\nLas entradas están desactivadas.", Toast.LENGTH_SHORT).show();
+            entriesEnabled = false;
         }
 
-        //Se crea el adapter para el spinner.
-        ArrayAdapter<String> adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,proveedoresNombres);
-        spProveedor.setAdapter(adapter);
+
 
     }
 
@@ -184,9 +195,12 @@ public class Movimiento extends AppCompatActivity {
 
 
     private void updateToEntrada(){
-        //Se presentan al usuario los datos del proveedor.
-        toggleProveedorVisibility(true);
-        movimientoTipo = HistorialDAO.MOV_ENTRADA;
+
+            //Se presentan al usuario los datos del proveedor.
+            toggleProveedorVisibility(true);
+            movimientoTipo = HistorialDAO.MOV_ENTRADA;
+
+
 
 
     }
@@ -215,7 +229,7 @@ public class Movimiento extends AppCompatActivity {
                     toggleProveedorVisibility(false);
                     movimientoTipo = -1;
                     npCantidad.setMinValue(minimas);
-                    npCantidad.setMaxValue(maximas);
+                    npCantidad.setMaxValue((entriesEnabled)?maximas:actuales);
                     npCantidad.setValue(actuales);
                 }
             }

@@ -6,8 +6,8 @@
     <ImageView
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:id="@+id/imageProveedor"
-        android:src="@drawable/box"
+        android:id="@+id/movimientoGroupImage"
+        android:src="@drawable/adjust"
         android:contentDescription="@string/strContentImagenMateria"
         android:layout_weight=".3" />
 

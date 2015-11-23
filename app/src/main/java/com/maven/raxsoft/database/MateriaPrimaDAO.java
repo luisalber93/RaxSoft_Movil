@@ -140,8 +140,8 @@ public class MateriaPrimaDAO extends GenericDAO {
         //Si el id recibido es mayor que cero implica que se consulta una materia prima específica.
         //Se agregan las condiciones necesarias al WhereArgs y al WhereClause.
         if (id > 0) {
-            whereClause += " AND " + InventariosContract.MateriaPrimaTable._ID + " = ?";
-            whereArgs = new String[]{Integer.toString(1), Integer.toString(id)};
+            whereClause = InventariosContract.MateriaPrimaTable._ID + " = ?";
+            whereArgs = new String[]{Integer.toString(id)};
         } else {
             //Si no es mayor a cero implica que se buscan todos los registros.
             whereArgs = new String[]{Integer.toString(1)};

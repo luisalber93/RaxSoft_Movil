@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.maven.raxsoft.R;
@@ -87,11 +88,15 @@ public class HistorialAdapter extends BaseExpandableListAdapter{
         TextView fecha = (TextView)convertView.findViewById(R.id.movimientoGroupFecha);
         TextView hora = (TextView)convertView.findViewById(R.id.movimientoGroupHora);
         TextView cantidad = (TextView)convertView.findViewById(R.id.movimientoGroupCantidad);
+        ImageView imagen = (ImageView)convertView.findViewById(R.id.movimientoGroupImage);
+
 
         //Se asignan los valores.
         materia.setText(headerMovimiento.getMateria().getNombre());
         //Se determina el color de la cantidad en base al tipo de movimiento.
         String colorCode = chooseColorCode(headerMovimiento.getTipoMov());
+        //Se determina la imagen en base al tipo de movimiento.
+        int imageResource = getImageFromMovimiento(headerMovimiento.getTipoMov());
         cantidad.setText(Integer.toString(headerMovimiento.getCantidad()));
         cantidad.setTextColor(Color.parseColor(colorCode));
 
@@ -99,6 +104,7 @@ public class HistorialAdapter extends BaseExpandableListAdapter{
         String[] formattedTime = formatDate(headerMovimiento.getFecha());
         fecha.setText(formattedTime[0]);
         hora.setText(formattedTime[1]);
+        imagen.setImageResource(imageResource);
 
         return convertView;
     }
@@ -115,6 +121,7 @@ public class HistorialAdapter extends BaseExpandableListAdapter{
         TextView user = (TextView)convertView.findViewById(R.id.movimientoDetailUser);
         TextView proveedor = (TextView)convertView.findViewById(R.id.movimientoDetailProveedor);
         TextView costo = (TextView)convertView.findViewById(R.id.movimientoDetailCosto);
+
 
         //Se asignan los valores a los componentes.
         user.setText(detailMovimiento.getUsuario());
@@ -182,6 +189,25 @@ public class HistorialAdapter extends BaseExpandableListAdapter{
         }
 
         return colorCode;
+
+    }
+
+    private int getImageFromMovimiento(int tipoMov){
+        int retorno = -1;
+        switch(tipoMov){
+            case HistorialDAO.MOV_ENTRADA:
+                retorno = R.drawable.entry;
+                break;
+            case HistorialDAO.MOV_SALIDA:
+                retorno= R.drawable.out;
+                break;
+            case HistorialDAO.MOV_AJUSTE:
+                retorno= R.drawable.adjust;
+                break;
+        }
+
+        return retorno;
+
 
     }
 

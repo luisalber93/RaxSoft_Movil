@@ -35,7 +35,7 @@ public class ProveedorDAO extends GenericDAO {
         boolean success = (database.insert(InventariosContract.ProveedorTable.TABLE_NAME,null,values)!=-1);
         //Se cierra la base de datos.
         cerrar();
-        String mensaje = (success)?"Proveedor registrado exitosamente":"Un proveedor con estas características ya existe. Imposible regisrar.";
+        String mensaje = (success)?"Proveedor registrado exitosamente":"Un proveedor con estas características ya existe. Imposible registrar.";
         //Se registra el resultado.
         Log.i(SQLiteHelper.LOG_TAG,mensaje);
         return new ErrorDB(success,mensaje);
@@ -109,6 +109,7 @@ public class ProveedorDAO extends GenericDAO {
                 InventariosContract.ProveedorTable.COLUMN_NAME_TELEFONO,
                 InventariosContract.ProveedorTable.COLUMN_NAME_GIRO,
                 InventariosContract.ProveedorTable.COLUMN_NAME_EMAIL,
+                InventariosContract.ProveedorTable.COLUMN_NAME_USO
         };
 
         String whereClause = InventariosContract.ProveedorTable.COLUMN_NAME_USO+" = ?";
@@ -116,10 +117,10 @@ public class ProveedorDAO extends GenericDAO {
         //Si el id recibido es mayor que cero implica que se está consultando por un registro específico.
         //Se agregan los parámetros adecuados al whereArgs y al whereClause.
         if(id>0){
-            whereClause+=" AND "+InventariosContract.ProveedorTable._ID+"= ?";
-            whereArgs = new String[]{Integer.toString(1),Integer.toString(id)};
+            whereClause = InventariosContract.ProveedorTable._ID+"= ?";
+            whereArgs = new String[]{Integer.toString(id)};
         }else{
-            //Si no es mayor a cero implica que se busan todos los registros.
+            //Si no es mayor a cero implica que se busan todos los registros que puedan usarse.
             whereArgs =  new String[]{Integer.toString(1)};
         }
 
@@ -156,6 +157,7 @@ public class ProveedorDAO extends GenericDAO {
                 proveedor.setTelefono(cursor.getString(7));
                 proveedor.setGiro(cursor.getString(8));
                 proveedor.setEmail(cursor.getString(9));
+                proveedor.setUso(cursor.getInt(10));
                 proveedores.add(proveedor);
             }while(cursor.moveToNext());
         }
