@@ -162,6 +162,8 @@
     <string name="strTec">Instituto Tecnológico de Toluca</string>
     <string name="strDesarrollo">Desarrollo Móvil</string>
     <string name="strFechaEntrega">Noviembre de 2015</string>
+    <string name="strMavenDevelopers">Logo Maven Developers</string>
+    <string name="strDescripcionModulo">Módulo de Control de Inventarios.</string>
 
 
 </resources>
